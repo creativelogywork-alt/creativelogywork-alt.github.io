@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#f3f0e8}
+@media (pointer:fine){*{cursor:none !important}}
+a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
+::selection{background:#e0582c;color:#f3f0e8}
+</style>
+</helmet>
+<div data-root="b" style="background:#f3f0e8;color:#1a1814;font-family:'Geist',sans-serif;min-height:100vh;overflow-x:clip;position:relative">
+
+<nav style="position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;background:rgba(26,24,20,.94);backdrop-filter:blur(12px);box-shadow:0 12px 32px rgba(26,24,20,.28);font:500 15px 'Geist',sans-serif;white-space:nowrap;max-width:calc(100vw - 24px);overflow-x:auto;scrollbar-width:none">
+  <a href="#top" data-cursor="top" style="width:44px;height:44px;flex:none;border-radius:50%;background:#e0582c;color:#1a1814;display:flex;align-items:center;justify-content:center;font-weight:700">K</a>
+  <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4"><a href="{{ n.href }}" data-cursor="{{ n.cur }}" style="padding:12px clamp(10px,3vw,16px);border-radius:999px;background:{{ n.bg }};color:{{ n.fg }};transition:background .35s,color .35s">{{ n.label }}</a></sc-for>
+</nav>
+
+<section id="top" style="position:relative;min-height:100vh;padding:48px clamp(20px,4vw,56px) 0;box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(24px,3.6vh,44px);overflow:hidden">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font:400 clamp(28px,3.6vw,52px)/1 'Geist',sans-serif;letter-spacing:-.02em;white-space:nowrap">Khalifah Imam Ali</span>
+      <span data-cursor="hello" style="display:inline-flex;gap:3px;font-size:clamp(26px,2.6vw,38px)"><span data-eye style="width:1em;height:1em;border-radius:50%;background:#fff;border:.07em solid #1a1814;display:flex;align-items:center;justify-content:center;box-sizing:border-box"><span data-pupil style="width:.46em;height:.46em;border-radius:50%;background:#1a1814"></span></span><span data-eye style="width:1em;height:1em;border-radius:50%;background:#fff;border:.07em solid #1a1814;display:flex;align-items:center;justify-content:center;box-sizing:border-box"><span data-pupil style="width:.46em;height:.46em;border-radius:50%;background:#1a1814"></span></span></span>
+    </div>
+    <span style="font:400 12px 'Geist',sans-serif;color:#6b665c">Product Designer &amp; Engineer · Tasikmalaya · <span style="white-space:nowrap"><span data-clock>--:--</span> WIB</span></span>
+  </div>
+  <div style="height:1px;background:rgba(26,24,20,.14)"></div>
+  <h1 style="margin:0;max-width:1320px;font:500 clamp(44px,6.4vw,112px)/1.02 'Geist',sans-serif;letter-spacing:-.025em;text-wrap:balance">I turn messy problems <span data-cursor="untangle" style="display:inline-flex;vertical-align:-.06em;width:1.9em;height:.8em;border-radius:999px;background:#e0582c;align-items:center;justify-content:center;margin:0 .04em"><svg data-tsvg style="width:76%;height:62%;overflow:visible"><path data-tpath d="M0 0" style="fill:none;stroke:#1a1814;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"></path></svg></span> into products <span onMouseEnter="{{ appsOn }}" onMouseLeave="{{ appsOff }}" data-cursor="ship it" style="display:inline-block;position:relative;vertical-align:-.06em;width:1.9em;height:.8em;margin:0 .04em"><sc-for list="{{ apps }}" as="ap" hint-placeholder-count="3"><span style="position:absolute;left:0;top:0;width:.8em;height:.8em;border-radius:.22em;border:.04em solid #1a1814;box-sizing:border-box;background:{{ ap.bg }};transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform:{{ ap.tf }}"></span></sc-for></span> people <span style="color:#e0582c">actually</span> use.</h1>
+  <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+    <span style="height:1.5em;font-size:clamp(17px,1.5vw,21px);display:flex;align-items:center;flex:none"><span style="font:500 11px 'Geist',sans-serif;color:#6b665c;white-space:nowrap;padding:6px 10px;border:1px solid rgba(26,24,20,.2);border-radius:999px">ON REPEAT ↻</span></span>
+    <span style="display:inline-block;flex:1;min-width:220px;height:3em;overflow:hidden;font-size:clamp(17px,1.5vw,21px);color:#3a362f">
+      <span style="display:flex;flex-direction:column;transition:transform .7s cubic-bezier(.7,0,.2,1);transform:translateY({{ quoteY }})"><span style="height:3em;line-height:1.5em">“I design the experience, then I build what’s behind it.”</span><span style="height:3em;line-height:1.5em">“A working prototype settles more debates than a deck.”</span><span style="height:3em;line-height:1.5em">“Systems first. Pixels second. Shipping always.”</span><span style="height:3em;line-height:1.5em">“If it can’t be built, it isn’t designed yet.”</span><span style="height:3em;line-height:1.5em">“Research tells me where to point the code.”</span></span>
+    </span>
+  </div>
+  <div data-hand style="position:relative;flex:none;height:{{ handBoxH }};margin-top:auto;overflow-x:{{ handOv }};scrollbar-width:none">
+    <sc-for list="{{ hand }}" as="c" hint-placeholder-count="5">
+      <a href="{{ c.href }}" onClick="{{ c.click }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" data-cursor="{{ c.cur }}" style="position:absolute;left:{{ c.left }};bottom:28px;width:{{ handW }};height:{{ handH }};margin-left:{{ handML }};border-radius:22px;background:{{ c.bg }};color:{{ c.fg }};transform-origin:50% 100%;transition:transform .55s cubic-bezier(.3,1.35,.5,1);transform:{{ c.tf }};z-index:{{ c.z }};box-shadow:0 -4px 30px rgba(26,24,20,.16);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:18px;box-sizing:border-box">
+        <sc-if value="{{ c.isVideo }}" hint-placeholder-val="{{ false }}">
+          <img src="assets/intro-poster.png" alt="Khalifah" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%">
+          <video data-introvid="" src="assets/intro.mp4" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:opacity .35s;opacity:{{ c.vidOp }}"></video>
+          <span style="position:absolute;left:50%;top:40%;opacity:{{ c.playOp }};transition:opacity .3s;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.2)">▶</span>
+          <span style="position:absolute;left:12px;right:12px;bottom:40px;padding:9px 12px;border-radius:12px;background:rgba(243,240,232,.94);display:flex;justify-content:space-between;gap:8px;white-space:nowrap;font:500 11px 'Geist',sans-serif;color:#1a1814"><span>Watch intro</span><span style="color:#6b665c">▸</span></span>
+        </sc-if>
+        <sc-if value="{{ c.notVideo }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;justify-content:space-between;gap:8px;white-space:nowrap;font:500 11px 'Geist',sans-serif;opacity:.8"><span>{{ c.kick }}</span></div>
+          <div style="padding-bottom:28px"><div style="font:500 clamp(38px,4vw,62px)/.95 'Geist',sans-serif">{{ c.t }}</div><div style="font:400 11px 'Geist',sans-serif;opacity:.75;margin-top:12px;white-space:nowrap">{{ c.sub }}</div></div>
+        </sc-if>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section data-pipe style="position:relative;height:520vh">
+  <div style="position:sticky;top:0;height:100svh;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-content:center;align-items:center;gap:clamp(20px,4vw,80px);padding:76px clamp(20px,5vw,96px) 24px;box-sizing:border-box;max-width:1440px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <span style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em">HOW I MAKE THINGS — CASE: CAREERAI, 2026</span>
+      <p style="margin:0;font:500 clamp(30px,4.2vw,70px)/1.06 'Geist',sans-serif;letter-spacing:-.02em;text-wrap:balance">From an <span data-sw style="color:#b07a00;display:inline-block">idea</span>, to a <span data-sw style="color:#6b665c;display:inline-block">prototype</span>, to an <span data-sw style="color:#e0582c;display:inline-block">experience</span>, to the <span data-sw style="color:#3a5bd9;display:inline-block">frontend</span>, and the <span data-sw style="color:#4fa86a;display:inline-block">data</span> behind it.</p>
+      <div style="display:flex;align-items:center;gap:16px">
+        
+        <div style="display:flex;gap:6px;flex:1;max-width:240px"><span data-seg style="flex:1;height:4px;border-radius:2px;background:rgba(26,24,20,.15)"></span><span data-seg style="flex:1;height:4px;border-radius:2px;background:rgba(26,24,20,.15)"></span><span data-seg style="flex:1;height:4px;border-radius:2px;background:rgba(26,24,20,.15)"></span><span data-seg style="flex:1;height:4px;border-radius:2px;background:rgba(26,24,20,.15)"></span><span data-seg style="flex:1;height:4px;border-radius:2px;background:rgba(26,24,20,.15)"></span></div>
+        <span data-sname style="font:500 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">Idea</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <div data-pipecard style="position:relative;width:min(430px,86vw);height:{{ pipeH }}"><div data-stage style="position:absolute;inset:0;box-sizing:border-box;border-radius:6px;background:#f2c94c;padding:36px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 50px rgba(26,24,20,.18);rotate:-3deg"><span style="font:500 11px 'Geist',sans-serif">IDEA · NOTE TO SELF</span><span style="font:500 clamp(32px,3.2vw,46px)/1.05 'Geist',sans-serif">What if students could see their skill gaps before they apply?</span><span style="font:400 11px 'Geist',sans-serif;opacity:.7">— scribbled, Jul 2026</span></div><div data-stage style="position:absolute;inset:0;box-sizing:border-box;border-radius:24px;background:#fff;border:1.5px dashed rgba(26,24,20,.3);padding:28px;display:flex;flex-direction:column;gap:20px"><span style="font:500 11px 'Geist',sans-serif;color:#6b665c">PROTOTYPE · LO-FI v0.3</span><div style="display:flex;gap:12px;align-items:center"><span style="display:block;width:44px;height:44px;border-radius:6px;background:#e6e1d6;border-radius:50%"></span><div style="display:flex;flex-direction:column;gap:8px;flex:1"><span style="display:block;width:60%;height:10px;border-radius:6px;background:#e6e1d6;"></span><span style="display:block;width:35%;height:8px;border-radius:6px;background:#e6e1d6;"></span></div></div><span style="display:block;width:100%;height:120px;border-radius:6px;background:#e6e1d6;border:1.5px dashed #c9c2b2;background:transparent"></span><div style="display:flex;flex-direction:column;gap:12px"><span style="display:block;width:100%;height:10px;border-radius:6px;background:#e6e1d6;"></span><span style="display:block;width:80%;height:10px;border-radius:6px;background:#e6e1d6;"></span><span style="display:block;width:55%;height:10px;border-radius:6px;background:#e6e1d6;"></span></div><div style="display:flex;gap:8px"><span style="display:block;width:90px;height:26px;border-radius:6px;background:#e6e1d6;border-radius:999px"></span><span style="display:block;width:110px;height:26px;border-radius:6px;background:#e6e1d6;border-radius:999px"></span></div><span style="display:block;height:44px;border-radius:12px;border:1.5px solid #1a1814;margin-top:auto"></span></div><div data-stage style="position:absolute;inset:0;box-sizing:border-box;border-radius:24px;background:#fff;padding:26px;display:flex;flex-direction:column;gap:18px;box-shadow:0 30px 60px rgba(26,24,20,.16)"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:22px;font-weight:600">Hi, Rina</div><div style="font:400 11px 'Geist',sans-serif;color:#6b665c;margin-top:4px">Target role: UX Researcher</div></div><span style="width:40px;height:40px;border-radius:50%;background:#3a5bd9"></span></div><div style="border-radius:16px;background:#f3f0e8;padding:18px;display:flex;flex-direction:column;gap:14px"><div style="font-weight:600">Your skill gap</div><div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>User research</span><span style="font-family:'Geist',sans-serif;color:#6b665c">80%</span></div><div style="height:8px;border-radius:4px;background:#e6e1d6"><div style="width:80%;height:100%;border-radius:4px;background:#3a5bd9"></div></div></div><div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>Figma</span><span style="font-family:'Geist',sans-serif;color:#6b665c">55%</span></div><div style="height:8px;border-radius:4px;background:#e6e1d6"><div style="width:55%;height:100%;border-radius:4px;background:#e0582c"></div></div></div><div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>SQL</span><span style="font-family:'Geist',sans-serif;color:#6b665c">25%</span></div><div style="height:8px;border-radius:4px;background:#e6e1d6"><div style="width:25%;height:100%;border-radius:4px;background:#4fa86a"></div></div></div></div><div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px"><span style="padding:8px 12px;border-radius:999px;background:#e8edfc;color:#2a46b8">12 jobs matched</span><span style="padding:8px 12px;border-radius:999px;background:#fbe7dc;color:#a63d17">3 scholarships</span></div><span style="margin-top:auto;height:48px;border-radius:14px;background:#3a5bd9;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600">Build my learning plan</span></div><div data-stage style="position:absolute;inset:0;box-sizing:border-box;border-radius:24px;background:#1a1814;color:#f3f0e8;padding:26px;font:400 clamp(11px,1vw,13px)/1.7 'Geist',sans-serif;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 60px rgba(26,24,20,.25)"><div style="display:flex;gap:6px;align-items:center;margin-bottom:22px"><span style="width:10px;height:10px;border-radius:50%;background:#e0582c"></span><span style="width:10px;height:10px;border-radius:50%;background:#f2c94c"></span><span style="width:10px;height:10px;border-radius:50%;background:#4fa86a"></span><span style="margin-left:10px;opacity:.6">skill_gap_card.dart</span></div><div style="display:flex;flex-direction:column;gap:2px"><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">1</span><span style="padding-left:0px;white-space:pre"><span style="color:#e0582c">class</span> <span style="color:#f2c94c">SkillGapCard</span> <span style="color:#e0582c">extends</span> StatelessWidget {</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">2</span><span style="padding-left:16px;white-space:pre"><span style="color:#e0582c">final</span> List&lt;<span style="color:#f2c94c">Skill</span>&gt; skills;</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">3</span><span style="padding-left:0px;white-space:pre"></span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">4</span><span style="padding-left:16px;white-space:pre">@override</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">5</span><span style="padding-left:16px;white-space:pre">Widget <span style="color:#7fa6ff">build</span>(BuildContext ctx) =&gt; Column(</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">6</span><span style="padding-left:32px;white-space:pre">children: skills</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">7</span><span style="padding-left:48px;white-space:pre">.<span style="color:#7fa6ff">where</span>((s) =&gt; s.gap &gt; <span style="color:#7fd39a">0.2</span>)</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">8</span><span style="padding-left:48px;white-space:pre">.<span style="color:#7fa6ff">map</span>((s) =&gt; <span style="color:#f2c94c">GapBar</span>(s))</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">9</span><span style="padding-left:48px;white-space:pre">.<span style="color:#7fa6ff">toList</span>(),</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">10</span><span style="padding-left:16px;white-space:pre">);</span></div><div style="display:flex;gap:16px"><span style="color:rgba(243,240,232,.3);width:16px;text-align:right;flex:none">11</span><span style="padding-left:0px;white-space:pre">}</span></div></div><div style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(243,240,232,.12);display:flex;justify-content:space-between;opacity:.6"><span>Flutter · Dart</span><span>✓ build passed</span></div></div><div data-stage style="position:absolute;inset:0;box-sizing:border-box;border-radius:24px;background:#fff;padding:26px;display:flex;flex-direction:column;box-shadow:0 30px 60px rgba(26,24,20,.16)"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px 'Geist',sans-serif">job_postings</span><span style="font:400 11px 'Geist',sans-serif;color:#6b665c">sample rows</span></div><div style="font:400 clamp(52px,5vw,72px)/1 'Geist',sans-serif;margin:14px 0 18px;color:#4fa86a">12,000+</div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;font:500 10px 'Geist',sans-serif;color:#6b665c;padding-bottom:8px"><span>TITLE</span><span>SOURCE</span><span style="text-align:right">IDR / MO</span></div><div style="font-size:13px"><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>UX Researcher</span><span style="color:#6b665c">jobstreet</span><span style="text-align:right">9.5M</span></div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>Product Designer</span><span style="color:#6b665c">linkedin</span><span style="text-align:right">14.0M</span></div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>Data Analyst</span><span style="color:#6b665c">kalibrr</span><span style="text-align:right">8.0M</span></div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>Flutter Engineer</span><span style="color:#6b665c">glints</span><span style="text-align:right">12.0M</span></div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>UI Designer</span><span style="color:#6b665c">jobstreet</span><span style="text-align:right">7.5M</span></div><div style="display:grid;grid-template-columns:1.6fr 1fr .8fr;gap:10px;padding:10px 0;border-top:1px solid rgba(26,24,20,.1)"><span>ML Intern</span><span style="color:#6b665c">linkedin</span><span style="text-align:right">5.0M</span></div></div><div style="margin-top:auto;font:400 11px/1.5 'Geist',sans-serif;color:#6b665c">2-stage dedup · salary normalised · expiry tracked → Supabase</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding:40px clamp(16px,3vw,40px) 120px">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
+    <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">Selected <span style="color:#e0582c">work</span></h2>
+    <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">3 case studies · 5 showcases</span>
+  </div>
+  <div style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em;padding:0 clamp(4px,1vw,16px) 16px">CASE STUDIES</div>
+  <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ true }}">
+    <div style="border-top:1.5px solid #1a1814">
+      <sc-for list="{{ cases }}" as="p" hint-placeholder-count="3">
+        <div data-wrow data-cursor="read case" onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" style="position:relative;border-bottom:1.5px solid #1a1814;overflow:hidden;height:{{ p.rowH }};transition:height .65s cubic-bezier(.6,0,.2,1)">
+          <div style="position:absolute;inset:0;background:{{ p.bg }};transform-origin:50% 100%;transform:{{ p.fillTf }};transition:transform .55s cubic-bezier(.6,0,.2,1)"></div>
+          <div data-wrow-in style="position:relative;height:{{ rowHead }};display:grid;grid-template-columns:{{ rowCols }};gap:16px;align-items:center;padding:0 clamp(4px,1vw,16px);box-sizing:border-box;color:{{ p.rowFg }};transition:color .4s">
+            <span style="font:500 12px 'Geist',sans-serif;white-space:nowrap;opacity:.7">{{ p.n }}</span>
+            <span style="font:500 clamp(30px,4.4vw,68px)/1.15 'Geist',sans-serif;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-bottom:.04em">{{ p.t }}</span>
+            <span style="display:{{ kickDisp }};font:500 12px 'Geist',sans-serif;white-space:nowrap;opacity:.8">{{ p.kick }}</span>
+            <span style="width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:16px;transition:transform .5s cubic-bezier(.3,1.4,.5,1);transform:{{ p.arrowTf }}">↗</span>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px 32px;padding:0 clamp(4px,1vw,16px) 24px;color:{{ p.fg }}">
+            <div style="display:flex;flex-direction:column;justify-content:space-between;gap:16px;transition:opacity .5s .1s,transform .6s cubic-bezier(.3,1,.4,1) .05s;opacity:{{ p.detOp }};transform:{{ p.detTf }}">
+              <p style="margin:0;font-size:17px;line-height:1.45;max-width:440px;text-wrap:pretty">{{ p.d }}</p>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="padding:10px 16px;border-radius:999px;background:{{ p.fg }};color:{{ p.bg }};font:500 13px 'Geist',sans-serif;white-space:nowrap">Read case study →</span><span style="font:500 12px 'Geist',sans-serif;opacity:.75">{{ p.tag }}</span></div>
+            </div>
+            <div style="position:relative;height:{{ rowImgH }};border-radius:16px;overflow:hidden;transition:transform .7s cubic-bezier(.3,1,.4,1) .05s;transform:{{ p.imgTf }}"><img src="{{ p.cover }}" alt="{{ p.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ p.fit }};background:{{ p.fitBg }}"></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ isFan }}" hint-placeholder-val="{{ false }}">
+    <div data-fan style="position:relative;height:min(40vw,520px);margin-top:24px">
+      <sc-for list="{{ cases }}" as="p" hint-placeholder-count="3">
+        <div data-fancard data-cursor="read case" onClick="{{ p.open }}" style="position:absolute;left:50%;top:0;width:min(31vw,410px);margin-left:max(-15.5vw,-205px);height:100%;border-radius:24px;background:{{ p.bg }};color:{{ p.fg }};overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px rgba(26,24,20,.18);transition:translate .45s cubic-bezier(.3,1.4,.5,1)" style-hover="translate:0 -20px">
+          <div style="flex:1;position:relative;min-height:0;margin:12px 12px 0;border-radius:14px;overflow:hidden"><img src="{{ p.cover }}" alt="{{ p.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ p.fit }};background:{{ p.fitBg }}"></div>
+          <div style="padding:16px 20px 20px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;gap:10px;font:500 11px 'Geist',sans-serif;opacity:.75"><span style="white-space:nowrap">{{ p.n }}</span><span style="white-space:nowrap">{{ p.kick }}</span></div>
+            <div style="font:500 clamp(24px,2.6vw,38px)/1 'Geist',sans-serif;letter-spacing:-.02em">{{ p.t }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;padding:80px clamp(4px,1vw,16px) 16px">
+    <span style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em">SHOWCASE</span>
+    <span style="font:400 12px 'Geist',sans-serif;color:#6b665c">Client work under NDA · previews only</span>
+  </div>
+  <div style="display:grid;grid-template-columns:{{ shCols }};gap:16px">
+    <sc-for list="{{ showcase }}" as="s" hint-placeholder-count="5">
+      <div data-cursor="{{ s.cur }}" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" onClick="{{ s.open }}" style="cursor:{{ s.pointer }};grid-area:{{ s.area }};aspect-ratio:{{ s.ratio }};width:{{ s.w }};justify-self:center;position:relative;border-radius:24px;overflow:hidden;background:{{ s.bg }};color:{{ s.fg }};transition:transform .5s cubic-bezier(.3,1.4,.5,1)" style-hover="transform:scale(1.015)">
+        <sc-if value="{{ s.vid }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:12px;right:12px;top:12px;bottom:{{ s.vbB }};aspect-ratio:{{ s.vbAR }};border-radius:14px;overflow:hidden;background:{{ s.bg }};box-shadow:0 0 0 1px {{ s.stripe }}"><video src="{{ s.poster }}" muted="" loop="" playsinline="" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video></div><span style="position:absolute;top:24px;right:24px;display:flex;align-items:center;gap:6px;padding:6px 10px 6px 8px;border-radius:999px;background:{{ s.fg }};color:{{ s.bg }};font:500 11px 'Geist',sans-serif;white-space:nowrap;pointer-events:none;transition:opacity .3s;opacity:{{ s.chipOp }}"><span style="font-size:9px">▶</span>{{ s.chip }}</span></sc-if>
+        <sc-if value="{{ s.noVid }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:14px;border-radius:14px;border:1.5px dashed {{ s.stripe }};background:repeating-linear-gradient(135deg,{{ s.stripe }} 0 10px,transparent 10px 20px);display:flex;align-items:flex-start;justify-content:flex-end;padding:14px;box-sizing:border-box"><span style="font:400 11px 'Geist',sans-serif;opacity:.7">animation preview</span></div></sc-if>
+        <div style="position:absolute;left:14px;bottom:14px;right:14px;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+          <span style="font:500 11px 'Geist',sans-serif;white-space:nowrap;padding:5px 9px;border-radius:999px;background:{{ s.fg }};color:{{ s.bg }}">{{ s.tag }}</span>
+          <span style="font:500 clamp(22px,2.2vw,34px)/1 'Geist',sans-serif;letter-spacing:-.02em;padding:8px 12px 10px;border-radius:12px;background:{{ s.bg }};text-wrap:balance;display:flex;flex-direction:column;gap:4px"><span>{{ s.t1 }}</span><sc-if value="{{ s.t2 }}" hint-placeholder-val="{{ false }}"><span style="font:500 clamp(13px,1vw,16px)/1.2 'Geist',sans-serif;letter-spacing:0;opacity:.8">{{ s.t2 }}</span></sc-if></span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="files" style="padding:120px clamp(20px,4vw,56px) 160px;max-width:1200px;margin:0 auto;box-sizing:border-box">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:90px">
+    <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">The <span style="color:#e0582c">files</span></h2>
+    <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">pull one out ↓</span>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <sc-for list="{{ files }}" as="f" hint-placeholder-count="5">
+      <div data-cursor="pull out" onClick="{{ f.open }}" onMouseEnter="{{ f.enter }}" onMouseLeave="{{ f.leave }}" style="position:relative;height:200px;margin-top:{{ f.mt }};transition:transform .45s cubic-bezier(.3,1.5,.5,1);transform:{{ f.tf }}">
+        <div style="position:absolute;top:-38px;left:{{ f.tabX }};width:min(240px,40%);height:40px;border-radius:14px 14px 0 0;background:{{ f.bg }};display:flex;align-items:center;padding:0 18px;box-sizing:border-box;font:500 12px 'Geist',sans-serif;gap:10px"><span>{{ f.co }}</span></div>
+        <div style="position:absolute;inset:0;border-radius:0 18px 18px 18px;background:{{ f.bg }};box-shadow:0 -1px 0 rgba(26,24,20,.12),0 -12px 30px rgba(26,24,20,.06);display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:flex-start;padding:22px 24px;box-sizing:border-box">
+          <span style="font:400 clamp(28px,3.4vw,44px)/1 'Geist',sans-serif">{{ f.role }}</span>
+          <span style="font:500 12px 'Geist',sans-serif;white-space:nowrap">{{ f.yrs }}</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="play" style="padding:60px clamp(16px,3vw,40px) 140px">
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
+    <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">After <span style="color:#e0582c">hours</span></h2>
+    <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">a podcast · two plugins · hover the clips</span>
+  </div>
+  <div style="display:grid;grid-template-columns:{{ playCols }};grid-auto-rows:{{ playRows }};gap:16px">
+    <a href="https://open.spotify.com/show/2TJ8k95plpDy6XC5DF0NKf" target="_blank" rel="noopener" onMouseEnter="{{ podEnter }}" onMouseLeave="{{ podLeave }}" data-cursor="listen on spotify ↗" data-cursor-bg="#4fa86a" style="grid-area:{{ ah.pod }};position:relative;border-radius:24px;overflow:hidden;background:#1a1814;color:#f3f0e8;display:block">
+      <img src="assets/podcast.jpeg" alt="Recording The Lowkey Loud" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
+      <sc-if value="{{ podVid }}" hint-placeholder-val="{{ false }}"><video data-podvid src="{{ podVid }}" muted="" loop="" playsinline="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s;opacity:{{ podOp }};pointer-events:none"></video></sc-if>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,24,20,.35),transparent 30%,transparent 50%,rgba(26,24,20,.85));pointer-events:none"></div>
+      <div style="position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;gap:10px;pointer-events:none">
+        <span style="display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#e0582c;color:#1a1814;font:600 11px 'Geist',sans-serif;letter-spacing:.06em"><span style="width:8px;height:8px;border-radius:50%;background:#1a1814"></span>ON AIR</span>
+        <span style="font:500 11px 'Geist',sans-serif;letter-spacing:.06em">PODCAST</span>
+      </div>
+      <div style="position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:flex-end;gap:16px;pointer-events:none">
+        <img src="https://i.scdn.co/image/ab6765630000ba8a2fd3e060d20ece94d6424a28" alt="" style="width:clamp(56px,6vw,84px);height:clamp(56px,6vw,84px);border-radius:12px;object-fit:cover;flex:none;box-shadow:0 6px 18px rgba(0,0,0,.35)">
+        <div style="flex:1;min-width:0"><div style="font:500 clamp(34px,4.4vw,72px)/.92 'Geist',sans-serif;letter-spacing:-.03em">The Lowkey Loud</div><div style="font:400 12px 'Geist',sans-serif;opacity:.8;margin-top:8px">Podcast · Imam Ali · on Spotify</div></div>
+        <span style="width:48px;height:48px;flex:none;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
+      </div>
+    </a>
+    <a href="https://www.figma.com/community/generative-plugin/1689716568944090780/handoff-annotator" target="_blank" rel="noopener" data-cursor="try in figma ↗" data-cursor-bg="#3a5bd9" style="grid-area:{{ ah.ho }};position:relative;border-radius:24px;overflow:hidden;background:#f1f2f4;display:block">
+      <img src="assets/plugin-handoff.png" alt="Design handoff annotator — Figma plugin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
+      <span style="position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 13px 'Geist',sans-serif;pointer-events:none"><img src="assets/plugin-handoff-icon.png" alt="" style="width:30px;height:30px;border-radius:8px">Figma plugin ↗</span>
+    </a>
+    <a href="https://www.figma.com/community/generative-plugin/1689717710124930717" target="_blank" rel="noopener" data-cursor="try in figma ↗" data-cursor-bg="#5823e3" style="grid-area:{{ ah.br }};position:relative;border-radius:24px;overflow:hidden;background:#f7f6f2;display:block">
+      <img src="assets/plugin-brand-wide.png" alt="Brand Guidelines Generator — Figma plugin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
+      <span style="position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 13px 'Geist',sans-serif;pointer-events:none"><img src="assets/plugin-brand-icon.png" alt="" style="width:30px;height:30px;border-radius:8px">Figma plugin ↗</span>
+    </a>
+
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:16px">
+    <sc-for list="{{ clips }}" as="v" hint-placeholder-count="3">
+      <div onMouseEnter="{{ v.enter }}" onMouseLeave="{{ v.leave }}" onClick="{{ v.tap }}" data-cursor="{{ v.cur }}" style="aspect-ratio:4/5;position:relative;border-radius:24px;overflow:hidden;background:#1a1814;transition:transform .5s cubic-bezier(.3,1.4,.5,1);transform:{{ v.tf }}">
+        <video src="{{ v.src }}" muted="" loop="" playsinline="" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;transition:filter .4s;filter:{{ v.filter }}"></video>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(transparent,rgba(26,24,20,.6));pointer-events:none"></div>
+        <div style="position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font:600 30px/1 'Geist',sans-serif;color:#f3f0e8;letter-spacing:-.02em">{{ v.label }}</span>
+          <span style="width:44px;height:44px;flex:none;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:14px;transition:opacity .3s;opacity:{{ v.iconOp }}">▶</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="hi" style="padding:80px 0 120px;overflow:hidden">
+  <div style="overflow:hidden;padding:20px 0">
+    <div data-marquee style="display:flex;width:max-content;font:500 clamp(90px,15vw,230px)/1 'Geist',sans-serif;letter-spacing:-.03em;white-space:nowrap">
+      <span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#e0582c">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#3a5bd9">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#e0582c">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#3a5bd9">✺</span>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:36px;margin-top:40px;padding:0 20px">
+    <a data-magnet data-cursor="write me" href="mailto:creativelogy.work@gmail.com" style="width:clamp(180px,22vw,240px);height:clamp(180px,22vw,240px);border-radius:50%;background:#1a1814;color:#f3f0e8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center"><span style="font:500 34px 'Geist',sans-serif">Get in touch</span><span style="font:400 11px 'Geist',sans-serif;opacity:.7">creativelogy.work@gmail.com</span></a>
+    <div style="display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;font:500 13px 'Geist',sans-serif">
+      <a href="https://linkedin.com/in/khalifah-imam-ali-2211701ba" data-cursor="↗" style="padding:13px 8px">LinkedIn</a>
+      <a href="https://github.com/creativelogywork-alt" data-cursor="↗" style="padding:13px 8px">GitHub</a>
+      <a href="https://docs.google.com/document/d/1Pbc6Fdn9ON6yKF_6igsMWB-KDONNAiWDdbvrsbmcnkM/edit?usp=sharing" target="_blank" rel="noopener" data-cursor="cv ↗" style="padding:13px 8px">Résumé</a>
+    </div>
+  </div>
+  <div style="margin:100px clamp(20px,4vw,56px) 0;padding-top:20px;border-top:1px solid rgba(26,24,20,.15);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 11px 'Geist',sans-serif;color:#6b665c"><span>© 2026 Khalifah Imam Ali</span><span>Designed &amp; built by me</span></div>
+</section>
+
+<a href="#top" data-cursor="top" data-prog style="position:fixed;right:16px;bottom:calc(max(16px, env(safe-area-inset-bottom)) + 72px);z-index:40;width:52px;height:52px;border-radius:50%;background:conic-gradient(#1a1814 calc(var(--sp,0) * 1turn),rgba(26,24,20,.12) 0);display:flex;align-items:center;justify-content:center">
+  <span data-pct style="width:44px;height:44px;border-radius:50%;background:#f3f0e8;display:flex;align-items:center;justify-content:center;font:500 11px 'Geist',sans-serif">0</span>
+</a>
+
+<div onClick="{{ closeFile }}" style="position:fixed;inset:0;z-index:80;background:rgba(26,24,20,.55);backdrop-filter:blur(8px);transition:opacity .4s,visibility .4s;visibility:{{ fileVis }};opacity:{{ fileOp }};pointer-events:{{ filePe }};display:flex;align-items:center;justify-content:center;perspective:1800px">
+  <div onClick="{{ stop }}" style="position:relative;width:{{ fileW }};height:min(620px,78vh);transition:transform .8s cubic-bezier(.3,1.2,.4,1);transform:{{ fileWrap }}">
+    <div style="position:absolute;top:-34px;left:24px;width:200px;height:36px;border-radius:12px 12px 0 0;background:{{ fl.bg }}"></div>
+    <div style="position:absolute;inset:0;border-radius:0 20px 20px 20px;background:{{ fl.bg }};padding:22px;box-sizing:border-box">
+      <div style="height:100%;border-radius:10px;background:#fffdf8;box-shadow:0 2px 8px rgba(26,24,20,.12);padding:clamp(18px,2.4vw,32px);box-sizing:border-box;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden">
+        <div style="display:flex;justify-content:space-between;font:500 11px 'Geist',sans-serif;color:#6b665c"><span>FILE</span><span>{{ fl.loc }}</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+        <div>
+          <div style="font:500 clamp(38px,4vw,60px)/.9 'Geist',sans-serif;letter-spacing:-.02em">{{ fl.co }}</div>
+          <div style="font:500 13px 'Geist',sans-serif;color:#e0582c;margin-top:10px">{{ fl.role }} · {{ fl.yrs }}</div>
+        </div>
+        
+        </div>
+        <div style="position:relative;flex:1;min-height:0;perspective:1400px">
+          <sc-for list="{{ flPages }}" as="pg" hint-placeholder-count="1">
+            <div style="position:absolute;inset:0;transform-origin:0 50%;backface-visibility:hidden;transition:transform .75s cubic-bezier(.6,0,.2,1);transform:{{ pg.tf }};z-index:{{ pg.z }};pointer-events:{{ pg.pe }};background:#fffdf8;display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.45;color:#3a362f">
+              <sc-for list="{{ pg.pts }}" as="pt" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;padding-top:12px;border-top:1px solid rgba(26,24,20,.1)"><span style="font:500 11px 'Geist',sans-serif;color:#6b665c;padding-top:3px">→</span><span style="text-wrap:pretty">{{ pt }}</span></div>
+              </sc-for>
+              <sc-if value="{{ pg.img }}" hint-placeholder-val="{{ false }}"><img src="{{ pg.img }}" alt="{{ fl.imgAlt }}" style="flex:1;min-height:120px;width:100%;object-fit:cover;object-position:center 30%;border-radius:8px;display:block;margin-top:auto"></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex:none">
+          <span onClick="{{ pgPrev }}" data-cursor="prev page" style="width:44px;height:44px;border-radius:50%;border:1.5px solid #1a1814;display:flex;align-items:center;justify-content:center;font-size:15px;transition:opacity .3s;opacity:{{ prevOp }}">←</span>
+          <span style="font:500 12px 'Geist',sans-serif;color:#6b665c;min-width:44px;text-align:center">{{ pgLabel }}</span>
+          <span onClick="{{ pgNext }}" data-cursor="next page" style="width:44px;height:44px;border-radius:50%;background:#1a1814;color:#f3f0e8;display:flex;align-items:center;justify-content:center;font-size:15px;transition:opacity .3s;opacity:{{ nextOp }}">→</span>
+          <span onClick="{{ closeFile }}" data-cursor="close" style="margin-left:auto;padding:10px 14px;border-radius:999px;background:#ece7db;font:500 12px 'Geist',sans-serif">Close ×</span>
+        </div>
+        
+      </div>
+    </div>
+    <div style="position:absolute;top:-30px;right:{{ stampR }};z-index:5;width:92px;height:92px;border-radius:50%;border:2px solid #e0582c;background:#fffdf8;color:#e0582c;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;box-sizing:border-box;font:600 10px/1.25 'Geist',sans-serif;rotate:-14deg;box-shadow:0 6px 16px rgba(26,24,20,.18);pointer-events:none">{{ fl.stamp }}</div>
+    <div style="position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.5,0,.2,1) .15s;transform:{{ fileCover }}">
+      <div style="position:absolute;inset:0;border-radius:0 20px 20px 20px;background:{{ fl.bg }};backface-visibility:hidden;box-shadow:inset 0 0 0 1px rgba(26,24,20,.08);display:flex;align-items:flex-end;padding:28px;box-sizing:border-box;font:400 52px 'Geist',sans-serif">{{ fl.co }}</div>
+      <div style="position:absolute;inset:0;border-radius:20px 0 20px 20px;background:{{ fl.bg }};filter:brightness(.92);backface-visibility:hidden;transform:rotateY(180deg)"></div>
+    </div>
+  </div>
+</div>
+
+<div data-reader style="position:fixed;inset:0;z-index:90;background:#ffffff;overflow-y:auto;overscroll-behavior:contain;transition:transform .7s cubic-bezier(.7,0,.2,1);transform:{{ csTf }};pointer-events:{{ csPe }}">
+  <div style="position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(16px,3vw,40px);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(26,24,20,.1)">
+    <span style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em">CASE STUDY · {{ cs.n }}</span>
+    <span onClick="{{ closeCase }}" data-cursor="close" style="width:44px;height:44px;border-radius:50%;background:#1a1814;color:#f3f0e8;display:flex;align-items:center;justify-content:center;font-size:18px">×</span>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:56px clamp(20px,4vw,40px) 140px;display:flex;flex-direction:column;gap:28px">
+    <span style="font:500 12px 'Geist',sans-serif;color:#e0582c">{{ cs.kick }}</span>
+    <h1 style="margin:0;font:500 clamp(48px,8vw,120px)/.92 'Geist',sans-serif;letter-spacing:-.03em;text-wrap:balance">{{ cs.title }}</h1>
+    <sc-if value="{{ cs.hero }}" hint-placeholder-val="{{ false }}"><img src="{{ cs.hero }}" alt="" style="width:100%;border-radius:20px;display:block"></sc-if>
+    <sc-for list="{{ cs.blocks }}" as="b" hint-placeholder-count="4">
+      <sc-if value="{{ b.isLab }}" hint-placeholder-val="{{ false }}"><div style="font:500 12px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em;text-transform:uppercase;padding-top:16px;border-top:1px solid rgba(26,24,20,.14);margin-top:12px">{{ b.text }}</div></sc-if>
+      <sc-if value="{{ b.isH }}" hint-placeholder-val="{{ false }}"><h2 style="margin:24px 0 0;font:500 clamp(30px,3.6vw,52px)/1.02 'Geist',sans-serif;letter-spacing:-.02em;text-wrap:balance">{{ b.text }}</h2></sc-if>
+      <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#3a362f;text-wrap:pretty">{{ b.text }}</p></sc-if>
+      <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}"><ol style="margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#3a362f"><sc-for list="{{ b.items }}" as="li"><li>{{ li }}</li></sc-for></ol></sc-if>
+      <sc-if value="{{ b.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ b.href }}" target="_blank" rel="noopener" data-cursor="open figma ↗" style="align-self:flex-start;padding:12px 18px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 14px 'Geist',sans-serif">{{ b.text }}</a></sc-if>
+      <sc-if value="{{ b.isSplit }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(24px,4vw,56px);align-items:center;margin:24px 0"><div style="order:1;display:flex;flex-direction:column;gap:16px"><sc-if value="{{ b.sLab }}"><span style="font:500 clamp(17px,1.4vw,20px) 'Geist',sans-serif;color:{{ b.labC }}">{{ b.lab }}</span></sc-if><h2 style="margin:0;font:500 clamp(30px,3.6vw,52px)/1.05 'Geist',sans-serif;letter-spacing:-.02em;text-wrap:balance">{{ b.h }}</h2><sc-if value="{{ b.sP }}"><p style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#3a362f;text-wrap:pretty">{{ b.p }}</p></sc-if><sc-if value="{{ b.sList }}"><ol style="margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#3a362f"><sc-for list="{{ b.items }}" as="it"><li>{{ it }}</li></sc-for></ol></sc-if></div><div style="order:{{ b.imgOrd }};background:{{ b.imgBg }};padding:{{ b.imgPad }};border-radius:24px"><img src="{{ b.src }}" alt="" loading="lazy" style="width:100%;display:block;border-radius:12px"></div></div></sc-if>
+      <sc-if value="{{ b.isImgs }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start"><sc-for list="{{ b.src }}" as="u"><img src="{{ u }}" alt="" loading="lazy" style="width:{{ b.imgW }};border-radius:16px;display:block;background:#ffffff"></sc-for></div></sc-if>
+    </sc-for>
+    <div onClick="{{ nextCase }}" data-cursor="next case" style="margin-top:60px;padding:28px;border-radius:24px;background:#1a1814;color:#f3f0e8;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+      <span style="font:500 11px 'Geist',sans-serif;opacity:.7;letter-spacing:.06em">NEXT CASE</span>
+      <span style="font:500 clamp(28px,3.4vw,48px)/1 'Geist',sans-serif;letter-spacing:-.02em">{{ csNext }} →</span>
+    </div>
+  </div>
+</div>
+
+<div onClick="{{ closeVideo }}" style="position:fixed;inset:0;z-index:85;background:rgba(26,24,20,.72);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;transition:opacity .4s,visibility .4s;visibility:{{ vidVis }};opacity:{{ vidOp }};pointer-events:{{ vidPe }}">
+  <div onClick="{{ stopProp }}" style="position:relative;width:min(1100px,100%,calc((100svh - 140px) * 3 / 2));display:flex;flex-direction:column;gap:12px;transition:transform .6s cubic-bezier(.3,1.3,.4,1);transform:{{ vidTf }}">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;color:#f3f0e8">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0"><span style="width:10px;height:10px;border-radius:50%;flex:none;background:#3a5bd9"></span><span style="font:500 15px 'Geist',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Hi, I'm Khalifah</span></div>
+      <span onClick="{{ closeVideo }}" data-cursor="close" style="flex:none;width:44px;height:44px;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer">×</span>
+    </div>
+    <div style="aspect-ratio:3 / 2;border-radius:20px;overflow:hidden;background:#1a1814;box-shadow:0 30px 80px rgba(0,0,0,.35)">
+      <sc-if value="{{ vidOn }}" hint-placeholder-val="{{ false }}"><video src="assets/intro.mp4" poster="assets/intro-poster.png" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" style="width:100%;height:100%;display:block;object-fit:contain;background:#1a1814"></video></sc-if>
+    </div>
+  </div>
+</div>
+<div onClick="{{ closeSc }}" style="position:fixed;inset:0;z-index:86;background:rgba(26,24,20,.72);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;transition:opacity .4s,visibility .4s;visibility:{{ scVis }};opacity:{{ scOp }};pointer-events:{{ scPe }}">
+  <div onClick="{{ stopProp }}" style="position:relative;width:{{ scW }};display:flex;flex-direction:column;gap:12px;transition:transform .6s cubic-bezier(.3,1.3,.4,1);transform:{{ scTf }}">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;color:#f3f0e8">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0"><span style="width:10px;height:10px;border-radius:50%;flex:none;background:{{ scBg }}"></span><span style="font:500 15px 'Geist',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ scTitle }}</span></div>
+      <span onClick="{{ closeSc }}" data-cursor="close" style="flex:none;width:44px;height:44px;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer">×</span>
+    </div>
+    <div style="aspect-ratio:{{ scAR }};border-radius:20px;overflow:hidden;background:{{ scBg }};box-shadow:0 30px 80px rgba(0,0,0,.35)">
+      <sc-if value="{{ scSrc }}" hint-placeholder-val="{{ false }}"><video src="{{ scSrc }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" style="width:100%;height:100%;display:block;object-fit:contain;background:{{ scBg }}"></video></sc-if>
+    </div>
+  </div>
+</div>
+<div data-blob style="position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;background:#e0582c;pointer-events:none;z-index:100"></div>
+<div data-cur-label style="position:fixed;left:0;top:0;padding:7px 12px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 11px 'Geist',sans-serif;white-space:nowrap;pointer-events:none;z-index:101;opacity:0;transition:opacity .2s,scale .3s cubic-bezier(.3,1.6,.5,1);scale:.4"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;workLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;index&quot;,&quot;fan&quot;],&quot;default&quot;:&quot;index&quot;,&quot;tsType&quot;:&quot;'index' | 'fan'&quot;,&quot;section&quot;:&quot;Selected work&quot;}}">
+// Showcase: set vid to an mp4 path (e.g. assets/naleya.mp4) to replace the placeholder.
+// Podcast hover clip: set to an mp4 path, e.g. 'assets/podcast.mp4'
+const PODCAST_CLIP = 'assets/podcast.mp4#t=0.1';
+const CASES = [{"id":"glints","t":"Glints App","title":"Glints Mobile App","kick":"Heuristic evaluation","d":"Glints is one of the most popular job portals in Asia. As a loyal user, I evaluated the app against Nielsen’s 10 usability heuristics and redesigned the screens that fell short.","tag":"Study case · Usability · Redesign","bg":"#1a1814","fg":"#f3f0e8","cover":"assets/glints-cover.png","hero":"assets/glints-cover.png","blocks":[{"k":"p","text":"The background behind this research and evaluation is I am one of Glints’ loyal user. I use Glints every time I became a jobseeker. But anyway, so Glints is one of the most popular job portal now, especially in Asia with their Unique Selling Point that is their chat feature that allows Jobseekers to having a convo with Employers. But as a user that understand about digital product, I feel like there is some thing that can be improved from this app. Most of them are the usability and how their design match real world case. So.. let’s take a look at my heuristic evaluation result."},{"k":"h","text":"A. What is heuristic evaluation"},{"k":"p","text":"Heuristic evaluation (Nielsen and Molich, 1990; Nielsen 1994) is a usability engineering method for finding the usability problems in a user interface design so that they can be attended to as part of an iterative design process. Heuristic evaluation involves having a small set of evaluators examine the interface and judge its compliance with recognized usability principles (the \"heuristics\")."},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d657f04eb472a083ab1bb5_image%2046.png"]},{"k":"p","text":"Now I will spot some usability principles based on 10 principles above for every page."},{"k":"h","text":"Home page"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6677ea5537ecc3f3eaf48_Home.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6677ed1cc5dbf86991c07_Home%20-%20Design%20suggestions.png"]},{"k":"h","text":"Inconsistent header back icon"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6b16dbedede17799b54c0_4.png"]},{"k":"h","text":"Pre-search screen"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d690bfe994495169d54737_Pre-search%20screen.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d690be76d28f60e195a046_2%20-%20Design%20solution.png"]},{"k":"h","text":"Post-search screen"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6afb203120a205003ceb9_Post%20search.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6afb167d27d30b8c26986_3%20-%20Design%20solution.png"]},{"k":"h","text":"Filter"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6d09b03120a20501c08a3_5-1.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6d09a2b8490df82a91550_45ff643adafbbaa9587956bf373ecf08_5-2.png"]},{"k":"h","text":"Detail Page"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6d09cbe6acd8df53686f3_6-1.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6d09bee11dca78ece1661_6-2.png"]},{"k":"h","text":"Chat & Application"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da49d1cc5dbf86e5e71c_7%20-%201.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da493308e48119320c69_7%20-%2011.png"]},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da48ee11dca78ed5169f_7-2.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da48a5c51140eb2f6ab7_7-3.png"]},{"k":"h","text":"Chat room & Template message"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da4902ab973d287245f9_81.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da49fe53349ec5d29079_8-2.png"]},{"k":"h","text":"Create cover letter by AI"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da49d89460ead2106f7c_9-1.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da49c5c4b283a460c471_9-2.png"]},{"k":"h","text":"Profile Page"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da49be6acd8df53e54d7_10-1.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da4881c2dd042f663c4a_10-2.png"]},{"k":"h","text":"Glints profile update"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da494eb472a083fba977_11-1.png","https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6da4831803367de413135_2b2507a60cc623e9aabbff0e907254a5_11-2.png"]},{"k":"p","text":"Okay, that's all for the heuristic evaluation with page redesign. Here's some other evaluation."},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/67d6ece9cd2bfc505c30bbff_Frame%201171276128.png"]}]},{"id":"tiket","t":"Tiket.com","title":"Tiket.com Design Challange","kick":"Design challenge","d":"Creating a product where people can have a great experience and feel safe when they travel.","tag":"Study case · Research · Mobile","bg":"oklch(0.7 0.16 40)","fg":"#1a1814","cover":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476aa32d3fd3c906c61fe32_14.png","hero":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476aa32d3fd3c906c61fe32_14.png","blocks":[{"k":"link","text":"Click here for figma link ↗","href":"https://www.figma.com/file/vRsL5XOvrPeJYCHqLWIzL8/Tiket-design-challenge?type=design&node-id=1%3A2&t=J5mAcidL4fs5EkPW-1"},{"k":"lab","text":"Project Overview"},{"k":"p","text":"Tiket.com is one of the largest online travel companies. Where, the travel industry has been massively affected by the COVID-19 situation."},{"k":"lab","text":"Objectives"},{"k":"p","text":"Creating a product where people can have a great experience and feel safe when they travel"},{"k":"lab","text":"Tools"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476a999e0cf325a31097138_logo%20tools.png"],"small":true},{"k":"lab","text":"Research Method"},{"k":"p","text":"Literature review & In-depth interview"},{"k":"split","h":"Problem Statement","p":"While covid-19 pandemic, many travelers are hasitate to book trips/hotel due to uncertainty","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476aafd0209ae05607e8104_Saly-25.png"},{"k":"split","flip":true,"h":"There's 5 points that i've found:","items":["Financial instability","Health and safety concerns","Travel/mobility restrictions","Cancelantions & reschedule","Unclearance info about govern policies"],"src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476ac31cc0de46689e49d4b_Group%201790.png"},{"k":"h","text":"So, based research. I mapped out all the possible solutions"},{"k":"p","text":"With Affinity Diagram"},{"k":"h","text":"Goal 1: How to gain user’s trust by feeling Safe"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476ad95c8f16ba1440e04bd_Frame%2033700.png"]},{"k":"h","text":"Goal 1: How to keep great user experience while Covid-19"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476ae58a80a03e4ea6e29f7_image%2051.png"]},{"k":"h","text":"The following is the user persona obtained"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476af05c68c8d20358c7b42_15.jpg"]},{"k":"h","text":"So, here's my solutions!"},{"k":"split","grey":true,"lab":"Health and safety concerns","h":"Let Users know CHSE etc. Facilities","p":"To increase user awareness of the facilities as well as guarantee their safety and comfort, I added information cards, banners and badges that tiket.com provides safe hotel services with various health facilities.","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476b9cec68c8d20359630e0_sol3.png","flip":false},{"k":"split","grey":true,"lab":"Health and safety concerns","h":"Guests Review Shortcut Filter","p":"We can make it easy for users to get cleanliness and safety information from the hotel they want to book. This shortcut is useful as multiple entry points and makes it easier for users to search for reviews in 1 click.","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476b98ed3fd3c906c6ffadf_Review.png","flip":true},{"k":"split","grey":true,"lab":"Travel/mobility restrictions","h":"Check In with QR Scan","p":"To reduce physical contact while traveling, Now you can check in at the hotel using a QR scan. Usually, if you want to check in, the user has to hands on their cellphone and ID card to the receptionist, now all you have to do is tap & scan!","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476baefb75d28b0f3e4080a_sol4.png","flip":false},{"k":"split","grey":true,"lab":"Cancelantions & reschedule","h":"Multiple Entry Point Guidelines","p":"I made T&C refund, cancel and reschedule more visible by adding some other entry points such as: Hotel detail pages, transaction receipts, hotel headlines, and payment pages. Then I made the refund policy card pop up more by adding a 3D icon","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476bac1cc99e3aa56d935fc_sol5.png","flip":true},{"k":"split","grey":true,"lab":"Financial instability","h":"Banner/Iklan Paylater","p":"During a pandemic, many users didn't want to take a vacation because they were afraid of economic uncertainty during a pandemic, that's why we provided options so that they could still have a vacation but could pay later","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476b7b922508d639e5901d1_sol1.png","flip":false},{"k":"split","grey":true,"lab":"Cancelantions & reschedule","h":"Make Protection More Controlable","p":"By making free protection has to be selected manually first, it provides a 'safer' behavior for the user. Because users can control and are more aware that they already have protection. This also makes the user more aware of the Terms & Condition","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6476bac19191deb839f94fba_sol6.png","flip":true}]},{"id":"parkee","t":"PARKEE EV Charging","title":"PARKEE EV Charging","kick":"Mobile App Design","d":"PARKEE decided to include the automation of EV Charging services to their parking service technology.","tag":"Study case · Mobile · Parking tech","bg":"oklch(0.7 0.16 150)","fg":"#1a1814","cover":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6475cce3a8e20ed4cd74e232_parkee%20EV.png","hero":"","blocks":[{"k":"link","text":"Click here for figma link ↗","href":"https://www.figma.com/file/IXkczh7fRQipqbqM54rxYD/PARKEE-EV-CHARGING?type=design&node-id=0%3A1&t=X1tw18vfG1LDDhVK-1"},{"k":"lab","text":"Project Overview"},{"k":"p","text":"PARKEE as a tech company working in parking technology industry should adapt to any new vehicle trend nowdays. We cannot deny that electric vehicles are the future of automotive trend. So, PARKEE decided to include the automation of EV Charging services to their parking service technology."},{"k":"lab","text":"Problem Statement"},{"k":"p","text":"Despite the growing popularity of electric vehicles, users often face difficulties in locating, accessing, and managing charging stations efficiently. Existing EV charging apps lack a seamless and user-friendly interface, making it cumbersome for users to find nearby charging stations, check real-time availability, and plan their charging sessions effectively."},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/6475cce3a8e20ed4cd74e232_parkee%20EV.png"]},{"k":"p","text":"There are serveral step to access this EV Charging Feature:"},{"k":"lab","text":"User Flow"},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/647c05a0017a9563bc649e97_flow%20ev.png"]},{"k":"h","text":"So, here's my solutions!"},{"k":"split","grey":true,"bgc":"#fde0e0","flip":false,"lab":"Main page","h":"Welcome to PARKEE!","p":"We let you explore our main feature on our homepage. To access EV Charging feature, you can try by using quickbook or easily click EV Charging Menu. But, don't forget to add your vehicle first on Account > Your Vehicle Page.","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/647c0b0e7a16be15a87f2426_evev.png"},{"k":"split","grey":true,"bgc":"#fde0e0","flip":true,"lab":"Quickbook","h":"Book a slot first!","p":"Before charge your EV vehicle, you should select parking location and pick an available slot who has EV Charge service. Then, when you arrived, just open your parking lock and start charging!","src":"https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/647c09efebf1c6171bf9eb8c_ev1.png"},{"k":"lab","text":"Electric Vehicle Charging"},{"k":"h","text":"Start Charging~"},{"k":"p","text":"Connect your device to EV Station network so that you can stay update to your vehicle battery. You can retry to connect for every 1 Minute, then plug the EV Charger to your vehicle."},{"k":"imgs","src":["https://cdn.prod.website-files.com/647561998ab9ea3baf96c157/647c09f071352a3cd36c2c5b_ev2.png"]}]}];
+const SHOWCASE = [
+ {
+  "t": "Naleya Genomics Indonesia — Laboratory Information System",
+  "tag": "Anarya · Healthcare · LIS",
+  "bg": "#24418f",
+  "fg": "#f3f0e8",
+  "stripe": "rgba(243,240,232,.22)",
+  "vid": "assets/sc-lis.mp4"
+ },
+ {
+  "t": "AI Interviewer — see your potential for the job you want",
+  "tag": "AI · Career · Mock interview",
+  "bg": "#2f6b3a",
+  "fg": "#f3f0e8",
+  "stripe": "rgba(243,240,232,.22)",
+  "vid": "assets/sc-ai-v2.mp4"
+ },
+ {
+  "t": "eKYC & eKYB for hospital-to-bank supply chain finance",
+  "tag": "Anarya · Fintech · Identity",
+  "bg": "#161d38",
+  "fg": "#f3f0e8",
+  "stripe": "rgba(243,240,232,.18)",
+  "vid": "assets/sc-ekyc-v2.mp4"
+ },
+ {
+  "t": "Sanurhasta landing page",
+  "tag": "Web · Landing page",
+  "bg": "#e6dcc6",
+  "fg": "#2a2216",
+  "stripe": "rgba(42,34,22,.16)",
+  "vid": "assets/sc-sanur.mp4"
+ },
+ {
+  "t": "CareerAI",
+  "mobile": true,
+  "tag": "Flutter · Supabase · Python",
+  "bg": "#e0582c",
+  "fg": "#1a1814",
+  "stripe": "rgba(26,24,20,.18)",
+  "vid": "assets/sc-careerai.mp4"
+ }
+];
+const FILES = [
+  { co: 'JobTech', role: 'Product Designer', yrs: 'Jul 2023 — Now', loc: 'Singapore', stamp: 'SHIPPING SINCE 2023', bg: '#f2c94c', img: 'assets/jobtech-team.jpeg', imgAlt: 'With the JobTech team in Singapore', pts: ['Design end-to-end UI/UX for Talented (betalented.ai), a talent and workforce platform with Jobs, Learn, and Workforce Redeployment modules, partnering with the Head of Product and cross-functional teams to turn business goals into shippable features.', 'Led the Talented v4.0 redesign across multiple divisions, modernising the visual language and user experience.', 'Initiated and lead an atomic design system with documented guidelines and best practices; supported the design manager in implementing design tokens.', 'Designed and maintain white-label career platforms for enterprise clients including OCBC (MOBI Career Marketplace), DBS (iGrow), Maybank, AIA, UOB, and IMDA Singapore.', 'Contributed to mobile apps NUS Career+ v4 and the Job Transformation Map (Career+ with IBF and MAS).', 'Run 1–2 user and competitor research studies per sprint to inform design decisions, working towards a 90%+ quarterly product goal completion target.', 'Keep design specs, flows, and assets at 90%+ alignment with releases through UI audits and AI-assisted design QA tickets that compare live builds against Figma.', 'Drafted a 90-day AI workflow adoption plan for the product team, covering prompt playbooks, Claude Projects, and API-level workflows for research synthesis, UX copy, and spec handoff.'] },
+  { co: 'Anarya', role: 'Freelance Product Designer & Engineer', yrs: 'Mar 2024 — Sep 2026', loc: 'Jakarta', stamp: '7+ PROTOTYPES', bg: '#e9c39b', pts: ['Designed and prototyped management systems for healthcare (Hospital Information System, Laboratory Information System for clinical and anatomical pathology), health insurance and supply-chain finance (BPJS Kesehatan claims, TPA), accounting, tenant management, and logistics/shipping.', 'Translated client business requirements into 7+ demo-ready prototypes in TypeScript and HTML/CSS using agentic AI workflows, taking each from discovery to client demo.', 'Partnered with product managers and directors to gather requirements and produce PRDs, user journeys, and business process flows for new products and features.', 'Worked with domain experts on a FHIR-based healthcare platform with eKYC and eKYB identity verification.', 'Conducted UX and competitor research with industry experts; prepared 20+ company identity documents.'] },
+  { co: 'PARKEE', role: 'Junior UI/UX Designer', yrs: 'Sep 2022 — May 2023', loc: 'Jakarta', stamp: 'EV READY', bg: '#d9cfb8', pts: ['Led design of new Electric Vehicle Charging and Multipayment features; designed ticketing systems for Grand Indonesia (mall) and PT Pelabuhan Indonesia (port).', 'Designed an invoicing dashboard across the operations system, mobile app, and CMS; maintained and reworked the PARKEE design system.', 'Initiated PARKEE app UX research by defining the research plan and research questions.'] },
+  { co: 'Navcore', role: 'Product Designer (Contract)', yrs: 'Feb — Jul 2022', loc: 'Bandung', stamp: 'NEXTFLOW DS', bg: '#c9d3e8', pts: ['Designed the NextFlow business process automation ecosystem (Process Designer, Business Analytics Monitoring, Task Manager) and a full-stack app builder platform (Next API, Next Flow, Next ID).', 'Owned visual design, prototyping, and the NextFlow Design System; ran daily stand-ups, design sprints, and weekly syncs with business, product, and engineering.'] },
+  { co: 'PanenPlaza', role: 'Chief Product Officer', yrs: 'Apr 2021 — Feb 2022', loc: 'Surakarta', stamp: 'MVP ZERO → ONE', bg: '#cfe0c6', pts: ['Led a quick-commerce MVP end to end, starting with market research and FGDs with farmers and traditional market stakeholders.', 'Translated business flows into user flows, use case diagrams, and information architecture; built a design system for front-end handoff, ran A/B tests, and managed the Jira backlog.'] }
+];
+const POPS = { run: 'OFF THE DESK', pod: 'PODCAST · ON AIR', plug: 'FIGMA COMMUNITY' };
+
+const QUOTES = ["I design the experience, then I build what’s behind it.","A working prototype settles more debates than a deck.","Systems first. Pixels second. Shipping always.","If it can’t be built, it isn’t designed yet.","Research tells me where to point the code."];
+const HAND = [
+  { n: '01', kick: 'Selected work', t: 'Case studies', sub: '3 cases · 5 showcases', bg: '#1a1814', fg: '#f3f0e8', href: '#work' },
+  { n: '02', kick: 'Experience', t: 'The files', sub: '2021 → now', bg: '#f2c94c', fg: '#1a1814', href: '#files' },
+  { video: true, bg: '#3a5bd9', fg: '#1a1814', href: '#top' },
+  { n: '04', kick: 'Off the clock', t: 'After hours', sub: '+ a podcast', bg: '#e0582c', fg: '#1a1814', href: '#play' },
+  { n: '05', kick: 'Contact', t: 'Say hi', sub: 'email me', bg: '#4fa86a', fg: '#1a1814', href: '#hi' }
+];
+const STAGES = ['Idea', 'Prototype', 'Experience', 'Frontend', 'Data'];
+
+class Component extends DCLogic {
+  state = { nav: 'top', sc: -1, scHover: -1, hover: -1, file: -1, lastFile: 0, pop: '', lastPop: 'run', playing: false, video: false, handHover: -1, apps: false, qi: 0, reel: 'run', sound: false, clip: '', caseHover: 0, fpage: 0, cs: -1, lastCs: 0 };
+  componentDidUpdate() {
+    document.documentElement.style.overflow = (this.state.file >= 0 || this.state.cs >= 0 || this.state.sc >= 0) ? 'hidden' : '';
+  }
+  componentDidMount() {
+    this.coarse = matchMedia('(pointer:coarse)').matches;
+    this.onNavScroll = () => { let a = 'top'; for (const id of ['work', 'files', 'play', 'hi']) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.45) a = id; } if (scrollY > 0 && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) a = 'hi'; if (a !== this.state.nav) this.setState({ nav: a }); };
+    addEventListener('scroll', this.onNavScroll, { passive: true }); addEventListener('load', this.onNavScroll); this.onNavScroll(); setTimeout(this.onNavScroll, 300);
+    this.m = { x: innerWidth / 2, y: innerHeight / 2 }; this.c = { ...this.m };
+    this.sy = scrollY; this.vel = 0; this.mq = 0; this.dir = 1; this.fn = 0; this.lastClock = -9; this.nextBlink = 2; this.lastPct = -1; this.lastSp = -1; this.lastAct = -1;
+    this.t0 = performance.now(); this.q();
+    if (!document.getElementById('warpB')) { const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('width', '0'); svg.setAttribute('height', '0'); svg.style.position = 'absolute'; svg.innerHTML = '<filter id="warpB" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter>'; document.body.appendChild(svg); }
+    this.turb = document.querySelector('#warpB feTurbulence'); this.disp = document.querySelector('#warpB feDisplacementMap');
+    this.onResize = () => { clearTimeout(this.rt); this.rt = setTimeout(() => { this.coarse = matchMedia('(pointer:coarse)').matches; this.q(); this.onNavScroll(); this.forceUpdate(); }, 150); };
+    addEventListener('resize', this.onResize);
+    this.qt = setInterval(() => { if (!document.hidden && scrollY < innerHeight) this.setState(s => ({ qi: (s.qi + 1) % QUOTES.length })); }, 3400);
+    this.onMove = e => { if (e.pointerType === 'mouse') { this.m.x = e.clientX; this.m.y = e.clientY; } };
+    this.onOver = e => {
+      if (this.coarse) return;
+      const el = e.target.closest && e.target.closest('[data-cursor]');
+      const lab = el ? el.getAttribute('data-cursor') : '';
+      if (lab === this.lab) return; this.lab = lab;
+      if (this.blob) this.blob.style.background = (el && el.getAttribute('data-cursor-bg')) || '#e0582c';
+      if (this.lbl) { if (lab) this.lbl.textContent = lab; this.lbl.style.opacity = lab ? '1' : '0'; this.lbl.style.scale = lab ? '1' : '.4'; }
+    };
+    this.onKey = e => {
+      if (e.key === 'Escape') this.setState({ file: -1, video: false, cs: -1, sc: -1 });
+      if (this.state.file >= 0 && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) this.setState(s => ({ fpage: Math.max(0, Math.min((this.nPages || 1) - 1, s.fpage + (e.key === 'ArrowRight' ? 1 : -1))) }));
+    };
+    addEventListener('pointermove', this.onMove, { passive: true }); addEventListener('mouseover', this.onOver, { passive: true }); addEventListener('keydown', this.onKey);
+    const loop = () => { this.raf = requestAnimationFrame(loop); this.frame(); }; loop();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf); clearInterval(this.qt); clearTimeout(this.rt);
+    removeEventListener('pointermove', this.onMove); removeEventListener('mouseover', this.onOver); removeEventListener('keydown', this.onKey); removeEventListener('scroll', this.onNavScroll); removeEventListener('load', this.onNavScroll); removeEventListener('resize', this.onResize);
+  }
+  q() {
+    const r = this.root = document.querySelector('[data-root="b"]'); if (!r) return;
+    const $ = s => r.querySelector(s), $$ = s => [...r.querySelectorAll(s)];
+    Object.assign(this, { eyes: $$('[data-eye]'), pupils: $$('[data-pupil]'), mqEl: $('[data-marquee]'), magnets: $$('[data-magnet]'), prog: $('[data-prog]'), pct: $('[data-pct]'), blob: $('[data-blob]'), lbl: $('[data-cur-label]'), clock: $('[data-clock]'), pipe: $('[data-pipe]'), stages: $$('[data-stage]'), sws: $$('[data-sw]'), segs: $$('[data-seg]'), sname: $('[data-sname]'), pipeCard: $('[data-pipecard]'), tpath: $('[data-tpath]'), hand: $('[data-hand]'), fan: $('[data-fan]'), fancards: $$('[data-fancard]'), wrows: $$('[data-wrow-in]'), work: $('#work') });
+    this.sws.forEach(el => el.style.transition = 'opacity .3s, transform .4s');
+    this.mqHalf = this.mqEl ? this.mqEl.scrollWidth / 2 : 0;
+    this.lastAct = -1;
+    [this.blob, this.lbl].forEach(e => e && (e.style.display = this.coarse ? 'none' : ''));
+  }
+  frame() {
+    if (!this.root || !this.root.isConnected || ++this.fn % 120 === 0) this.q();
+    if (!this.root) return;
+    const vw = innerWidth, vh = innerHeight, m = this.m, c = this.c, co = this.coarse, t = (performance.now() - this.t0) / 1000;
+    const cl = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+    // reads (batched before any writes to avoid layout thrash)
+    const sy = scrollY, v = sy - this.sy; this.sy = sy; this.vel += (v - this.vel) * .12; if (Math.abs(v) > 1) this.dir = v > 0 ? 1 : -1;
+    const docH = document.documentElement.scrollHeight - vh, hero = sy < vh * 1.2;
+    const eyeR = hero && !co ? this.eyes.map(e => e.getBoundingClientRect()) : null;
+    const tsv = hero && this.tpath ? this.tpath.parentNode : null, tW = tsv ? tsv.clientWidth || 80 : 0, tH = tsv ? tsv.clientHeight || 28 : 0;
+    const pr = this.pipe ? this.pipe.getBoundingClientRect() : null, pipeOn = pr && pr.bottom > 0 && pr.top < vh;
+    const wr = this.work ? this.work.getBoundingClientRect() : null, workOn = wr && wr.top < vh && wr.bottom > 0;
+    const rowT = workOn ? this.wrows.map(el => el.getBoundingClientRect().top) : null;
+    const fanM = workOn && this.fan && this.fancards.length ? { top: this.fan.getBoundingClientRect().top, W: this.fan.clientWidth, cw: this.fancards[0].offsetWidth || 300 } : null;
+    const mqT = this.mqEl ? this.mqEl.getBoundingClientRect() : null, mqOn = mqT && mqT.bottom > 0 && mqT.top < vh;
+    const magR = !co && this.magnets.length ? this.magnets.map(el => el.getBoundingClientRect()) : null;
+    // writes
+    if (!co) {
+      const px = c.x, py = c.y; c.x += (m.x - c.x) * .22; c.y += (m.y - c.y) * .22;
+      const vx = c.x - px, vy = c.y - py, sp = Math.min(Math.hypot(vx, vy) / 40, .7), k = this.lab ? 2.2 : 1;
+      if (this.blob) this.blob.style.transform = `translate(${c.x}px,${c.y}px) translate(-50%,-50%) rotate(${Math.atan2(vy, vx)}rad) scale(${k * (1 + sp)},${k * (1 - sp * .5)})`;
+      if (this.lbl) this.lbl.style.transform = `translate(${c.x + 18}px,${c.y + 18}px)`;
+    }
+    const sp2 = docH > 0 ? sy / docH : 0;
+    if (this.prog && Math.abs(sp2 - this.lastSp) > .0005) { this.lastSp = sp2; this.prog.style.setProperty('--sp', sp2.toFixed(4)); }
+    const pc = Math.round(sp2 * 100); if (this.pct && pc !== this.lastPct) { this.lastPct = pc; this.pct.textContent = pc; }
+    if (hero) {
+      if (t > this.nextBlink) { this.blinkAt = t; this.nextBlink = t + 2.5 + Math.random() * 3; }
+      const bl = this.blinkAt && t - this.blinkAt < .16 ? .1 : 1;
+      this.eyes.forEach((e, i) => {
+        if (eyeR && this.pupils[i]) { const r = eyeR[i], dx = m.x - (r.left + r.width / 2), dy = m.y - (r.top + r.height / 2), a = Math.atan2(dy, dx), d = Math.min(Math.hypot(dx, dy) / 12, r.width * .22); this.pupils[i].style.transform = `translate(${Math.cos(a) * d}px,${Math.sin(a) * d}px)`; }
+        e.style.transform = `scaleY(${bl})`;
+      });
+      if (tsv) {
+        const hov = this.lab === 'untangle'; this.ta = (this.ta ?? 1) + ((hov ? 0 : 1) - (this.ta ?? 1)) * .08;
+        const A = tH * .55 * this.ta, n = 5; let d = `M2 ${tH / 2}`;
+        for (let i = 1; i <= n; i++) { const x = 2 + (tW - 4) * i / n, cx = 2 + (tW - 4) * (i - .5) / n, cy = tH / 2 + (i % 2 ? -1 : 1) * A * (1 + .35 * Math.sin(t * 3 + i * 1.3)); d += ` Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x.toFixed(1)} ${tH / 2}`; }
+        this.tpath.setAttribute('d', d);
+      }
+      if (this.hand && !co && vw >= 700) this.hand.style.transform = `translateX(${(c.x - vw / 2) * .025}px)`;
+    }
+    if (pipeOn && this.stages.length) {
+      const p = cl(-pr.top / (pr.height - vh)), f = p * 4, i0 = Math.min(3, Math.floor(f)), fr = f - i0;
+      const e = cl((fr - .3) / .4), es = e * e * (3 - 2 * e), g = i0 + es, act = Math.round(g), w = Math.sin(es * Math.PI);
+      this.stages.forEach((el, i) => { const d = Math.abs(g - i); el.style.opacity = cl(1 - d * 1.7).toFixed(3); el.style.transform = `translateY(${(i - g) * 50}px) scale(${1 - Math.min(d, 1) * .08}) rotate(${(i - g) * -4}deg)`; el.style.pointerEvents = d < .5 ? 'auto' : 'none'; });
+      const warp = w > .02 && !co;
+      if (warp) { this.disp && this.disp.setAttribute('scale', (w * 90).toFixed(1)); this.turb && this.turb.setAttribute('baseFrequency', `${(.008 + w * .012).toFixed(4)} ${(.03 + Math.sin(t * 2) * .006).toFixed(4)}`); }
+      if (this.pipeCard) { const fl = warp ? 'url(#warpB)' : 'none'; if (this.pipeCard.style.filter !== fl) this.pipeCard.style.filter = fl; }
+      if (act !== this.lastAct) {
+        this.lastAct = act;
+        this.sws.forEach((el, i) => { const on = i === act; el.style.opacity = on ? '1' : '.3'; el.style.transform = on ? 'translateY(-4px)' : 'none'; });
+        this.segs.forEach((s, i) => s.style.background = i <= act ? '#1a1814' : 'rgba(26,24,20,.15)');
+        if (this.sname) this.sname.textContent = STAGES[act];
+      }
+    }
+    if (fanM) {
+      const p = cl((vh - fanM.top) / (vh * .8)), e = p * p * (3 - 2 * p), spr = Math.min((fanM.W - fanM.cw) / 2, fanM.cw * 1.06);
+      this.fancards.forEach((el, i) => { const o = i - 1; el.style.transform = `translateX(${o * spr * e}px) translateY(${Math.abs(o) * (18 + 22 * e)}px) rotate(${o * (3 + 4 * e)}deg)`; el.style.zIndex = o === 0 ? 3 : 2; });
+    }
+    if (rowT) this.wrows.forEach((el, i) => { const k = cl((vh - rowT[i]) / (vh * .3)), ek = 1 - (1 - k) ** 3; el.style.transform = `translateX(${(1 - ek) * 90}px)`; el.style.opacity = (.15 + .85 * ek).toFixed(3); });
+    if (mqOn && this.mqHalf) { const half = this.mqHalf; this.mq -= (1 + Math.abs(this.vel) * .4) * this.dir; this.mq = ((this.mq % half) - half) % half; this.mqEl.style.transform = `translateX(${this.mq.toFixed(1)}px)`; }
+    if (magR) this.magnets.forEach((el, i) => {
+      const r = magR[i], dx = m.x - (r.left + r.width / 2), dy = m.y - (r.top + r.height / 2), on = Math.hypot(dx, dy) < 220;
+      const nx = (el._x || 0) + ((on ? dx * .35 : 0) - (el._x || 0)) * .14, ny = (el._y || 0) + ((on ? dy * .35 : 0) - (el._y || 0)) * .14;
+      if (Math.abs(nx - (el._x || 0)) + Math.abs(ny - (el._y || 0)) > .05) { el._x = nx; el._y = ny; el.style.transform = `translate(${nx}px,${ny}px)`; }
+    });
+    if (this.clock && t - this.lastClock > 1) { this.lastClock = t; this.clock.textContent = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hour12: false }); }
+  }
+  openCase(i) { const r = document.querySelector('[data-reader]'); if (r) r.scrollTop = 0; this.setState({ cs: i, lastCs: i }); }
+  caseVals() {
+    const s = this.state, c = CASES[s.lastCs], open = s.cs >= 0, nx = (s.lastCs + 1) % CASES.length;
+    return {
+      cs: { ...c, n: '0' + (s.lastCs + 1) + ' / 03', blocks: c.blocks.map(b => ({ ...b, isLab: b.k === 'lab', isH: b.k === 'h', isP: b.k === 'p', isList: b.k === 'list', isSplit: b.k === 'split', labC: b.bgc ? '#d0021b' : '#4f5bd5', imgW: b.small ? 'max(25%,140px)' : '100%', sLab: !!b.lab, sP: !!b.p, sList: !!b.items, imgOrd: b.flip ? 0 : 2, imgBg: b.grey ? (b.bgc || '#c9d1e4') : 'transparent', imgPad: b.grey ? 'clamp(16px,3vw,40px)' : '0', isLink: b.k === 'link', isImgs: b.k === 'imgs' })) },
+      csTf: open ? 'translateY(0%)' : 'translateY(102%)', csPe: open ? 'auto' : 'none',
+      closeCase: () => this.setState({ cs: -1 }), nextCase: () => this.openCase(nx), csNext: CASES[nx].title
+    };
+  }
+  pageVals(F, mob) {
+    const vw = typeof innerWidth !== 'undefined' ? innerWidth : 1400, vh = typeof innerHeight !== 'undefined' ? innerHeight : 900;
+    const fw = mob ? vw * .86 : Math.min(520, vw * .44), fh = Math.min(620, vh * .78), pad = mob ? 18 : 32;
+    const cpl = Math.max(18, (fw - 44 - pad * 2 - 31) / 7.2), cap = Math.max(5, (fh - 44 - pad * 2 - 32 - 130 - 58) / 20.3) * .9;
+    const pages = []; let cur = { pts: [], l: 0 };
+    F.pts.forEach(pt => { const l = Math.ceil(pt.length / cpl) + 1.2; if (cur.pts.length && cur.l + l > cap) { pages.push(cur); cur = { pts: [], l: 0 }; } cur.pts.push(pt); cur.l += l; });
+    pages.push(cur);
+    if (F.img) { if (cap - cur.l > 7) cur.img = F.img; else pages.push({ pts: [], l: 0, img: F.img }); }
+    const n = this.nPages = pages.length, fp = Math.min(this.state.fpage, n - 1);
+    const go = d => e => { e.stopPropagation(); this.setState(s => ({ fpage: Math.max(0, Math.min(n - 1, s.fpage + d)) })); };
+    return {
+      flPages: pages.map((p, i) => ({ pts: p.pts, img: p.img || '', tf: i < fp ? 'rotateY(-180deg)' : 'rotateY(0deg)', z: n - i, pe: i === fp ? 'auto' : 'none' })),
+      pgLabel: (fp + 1) + ' / ' + n, pgPrev: go(-1), pgNext: go(1), prevOp: fp > 0 ? 1 : .25, nextOp: fp < n - 1 ? 1 : .25
+    };
+  }
+  renderVals() {
+    const s = this.state, mobV = typeof innerWidth !== 'undefined' && innerWidth < 700, fOpen = s.file >= 0, F = FILES[s.lastFile], pOpen = !!s.pop, scCoarse = typeof matchMedia !== 'undefined' && matchMedia('(pointer:coarse)').matches;
+    return {
+      cases: CASES.map((p, i) => { const on = s.caseHover === i; return { ...p, n: '0' + (i + 1) + ' / 03', fit: p.id === 'glints' ? 'contain' : 'cover', fitBg: p.id === 'glints' ? '#fafafa' : 'transparent', open: () => this.openCase(i), enter: () => this.setState({ caseHover: i }),
+        rowH: on ? (mobV ? '520px' : '420px') : (mobV ? '84px' : '116px'), fillTf: on ? 'scaleY(1)' : 'scaleY(0)', rowFg: on ? p.fg : '#1a1814', arrowTf: on ? 'rotate(45deg)' : 'rotate(0deg)',
+        detOp: on ? 1 : 0, detTf: on ? 'translateY(0px)' : 'translateY(24px)', imgTf: on ? 'translateY(0px) scale(1)' : 'translateY(60px) scale(.96)' }; }),
+      isIndex: mobV || (this.props.workLayout ?? 'index') !== 'fan', isFan: !mobV && this.props.workLayout === 'fan',
+      rowHead: mobV ? '84px' : '116px', rowCols: mobV ? '44px minmax(0,1fr) 44px' : '72px minmax(0,1fr) auto 44px', kickDisp: mobV ? 'none' : 'block', rowImgH: mobV ? '200px' : '280px',
+      showcase: SHOWCASE.map((x, i) => ({ ...x, t1: x.t.split(' — ')[0], t2: x.t.split(' — ')[1] || '', noVid: !x.vid, poster: x.vid ? x.vid + '#t=1.5' : '', cur: x.vid ? (scCoarse ? 'tap to watch' : s.scHover === i ? 'click for full video' : 'hover to preview') : 'NDA · preview only', pointer: x.vid ? 'pointer' : 'default', chip: scCoarse ? 'Tap to watch' : 'Hover · click to expand', vbB: x.mobile ? '12px' : 'auto', vbAR: x.mobile ? 'auto' : '16 / 9', chipOp: s.scHover === i ? 0 : 1,
+        enter: e => { if (!x.vid || scCoarse) return; const vd = e.currentTarget.querySelector('video'); if (vd) { vd.muted = true; const pr = vd.play(); if (pr && pr.catch) pr.catch(() => {}); } this.setState({ scHover: i }); },
+        leave: e => { if (!x.vid) return; const vd = e.currentTarget.querySelector('video'); if (vd) vd.pause(); this.setState(st => st.scHover === i ? { scHover: -1 } : null); },
+        open: e => { if (!x.vid) return; const vd = e.currentTarget.querySelector('video'); if (vd) vd.pause(); this.setState({ sc: i, lastSc: i, scHover: -1 }); }, area: mobV ? 'auto' : ['1 / 1 / 2 / 2', '1 / 2 / 2 / 3', '2 / 1 / 3 / 2', '2 / 2 / 3 / 3', '1 / 3 / 3 / 4'][i], ratio: x.mobile ? (mobV ? '9 / 16' : 'auto') : '16 / 10', w: x.mobile && mobV ? 'min(100%,320px)' : '100%' })),
+      scOp: s.sc >= 0 ? 1 : 0, scVis: s.sc >= 0 ? 'visible' : 'hidden', fileVis: fOpen ? 'visible' : 'hidden', vidVis: s.video ? 'visible' : 'hidden',
+      scW: SHOWCASE[s.lastSc || 0].mobile ? 'min(420px,100%,calc((100svh - 140px) * 9 / 16))' : 'min(1200px,100%)', scAR: SHOWCASE[s.lastSc || 0].mobile ? '9 / 16' : '16 / 9', scPe: s.sc >= 0 ? 'auto' : 'none', scTf: s.sc >= 0 ? 'scale(1) translateY(0px)' : 'scale(.9) translateY(30px)', scSrc: s.sc >= 0 ? SHOWCASE[s.sc].vid : '', scBg: s.sc >= 0 ? SHOWCASE[s.sc].bg : '#1a1814', scTitle: s.sc >= 0 ? SHOWCASE[s.sc].t : '',
+      closeSc: () => this.setState({ sc: -1 }), stopProp: e => e.stopPropagation(),
+      shCols: mobV ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1fr) minmax(0,.7fr)',
+      playCols: mobV ? 'repeat(2,minmax(0,1fr))' : 'repeat(12,minmax(0,1fr))', playRows: mobV ? '150px' : 'clamp(36px,4vw,64px)',
+      ah: mobV ? { pod: '1 / 1 / 3 / 3', ho: '3 / 1 / 4 / 3', br: '4 / 1 / 5 / 3' } : { pod: '1 / 1 / 11 / 8', ho: '1 / 8 / 7 / 13', br: '7 / 8 / 11 / 13' },
+      podVid: PODCAST_CLIP, podOp: s.podOn ? 1 : 0,
+      podEnter: () => { const v = document.querySelector('[data-podvid]'); if (v) { v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); } this.setState({ podOn: true }); },
+      podLeave: () => { const v = document.querySelector('[data-podvid]'); if (v) v.pause(); this.setState({ podOn: false }); },
+      ...this.caseVals(),
+      ...this.pageVals(F, mobV),
+      files: FILES.map((f, i) => ({ ...f, n: '0' + (i + 1), mt: i ? '-120px' : '0px', tabX: (i * 15) + '%',
+        tf: s.hover === i ? 'translateY(-30px)' : 'translateY(0px)',
+        open: () => this.setState({ file: i, lastFile: i, hover: -1, fpage: 0 }), enter: () => this.setState({ hover: i }), leave: () => this.setState({ hover: -1 }) })),
+      fl: { ...F, n: '0' + (s.lastFile + 1) },
+      fileOp: fOpen ? 1 : 0, filePe: fOpen ? 'auto' : 'none',
+      fileWrap: fOpen ? (mobV ? 'translateX(0%) translateY(0px) rotate(0deg)' : 'translateX(50%) translateY(0px) rotate(0deg)') : 'translateX(0%) translateY(110vh) rotate(-8deg)',
+      fileCover: fOpen ? (mobV ? 'translateY(-130%) rotate(-8deg)' : 'rotateY(-178deg)') : 'rotateY(0deg)',
+      closeFile: () => this.setState({ file: -1 }),
+      popOp: pOpen ? 1 : 0, popPe: pOpen ? 'auto' : 'none', popTf: pOpen ? 'translateY(0px)' : 'translateY(120%)',
+      popKicker: POPS[s.lastPop], isRun: s.lastPop === 'run', isPod: s.lastPop === 'pod', isPlug: s.lastPop === 'plug',
+      closePop: () => this.setState({ pop: '' }), stop: e => e.stopPropagation(),
+      togglePlay: () => this.setState(st => ({ playing: !st.playing })),
+      reelTabs: [['run', 'Run'], ['gym', 'Gym'], ['explore', 'Explore']].map(([k, l]) => ({ label: l, set: () => this.setState({ reel: k }), bg: s.reel === k ? '#1a1814' : 'transparent', fg: s.reel === k ? '#f3f0e8' : '#1a1814' })),
+      reelSrc: 'assets/' + s.reel + '.mp4',
+      clips: [['run', 'Run'], ['gym', 'Gym'], ['explore', 'Explore']].map(([k, l]) => {
+        const on = s.clip === k, coarse = typeof matchMedia !== 'undefined' && matchMedia('(pointer:coarse)').matches;
+        const play = el => { const vd = el.querySelector('video'); if (!vd) return; vd.muted = true; vd.playsInline = true; const p = vd.play(); if (p && p.catch) p.catch(() => {}); this.setState({ clip: k }); };
+        const stop = el => { const vd = el && el.querySelector('video'); if (vd) vd.pause(); this.setState(st => st.clip === k ? { clip: '' } : null); };
+        return { label: l, src: 'assets/' + k + '.mp4#t=0.1', flex: { run: '1.3', gym: '1', explore: '.78' }[k], cur: on ? 'playing' : (coarse ? 'tap to play' : 'hover'),
+          tf: on ? 'scale(1.02)' : 'scale(1)', filter: on ? 'none' : 'grayscale(.5) brightness(.82)', iconOp: on ? 0 : 1,
+          enter: e => { if (!coarse) play(e.currentTarget); }, leave: e => { if (!coarse) stop(e.currentTarget); },
+          tap: e => { if (!coarse) return; const el = e.currentTarget; if (on) stop(el); else { document.querySelectorAll('[data-root="b"] video').forEach(x => x.pause()); play(el); } } };
+      }),
+      reelCaption: { run: 'Morning run', gym: 'Gym session', explore: 'Exploring' }[s.reel],
+      toggleSound: () => this.setState(st => ({ sound: !st.sound })), soundLabel: s.sound ? 'Sound on' : 'Sound off',
+      ...(() => { const vw = typeof innerWidth !== 'undefined' ? innerWidth : 1400, mob = vw < 700, cw = mob ? Math.min(220, vw * .56) : Math.max(120, Math.min(340, (vw - 48) / 5.3)), ch = Math.round(cw * 1.4); return { handW: cw + 'px', handH: ch + 'px', handML: mob ? '0px' : (-cw / 2) + 'px', handBoxH: (ch + (mob ? 120 : 100)) + 'px', handOv: mob ? 'auto' : 'visible', pipeH: mob ? 'max(280px, calc(100svh - 420px))' : 'min(540px, calc(100vh - 140px))', fileW: mob ? '86vw' : 'min(520px,44vw)', stampR: mob ? '-4px' : '-24px' }; })(),
+      quoteY: `-${s.qi * 3}em`,
+      appsOn: () => this.setState({ apps: true }), appsOff: () => this.setState({ apps: false }),
+      apps: ['#3a5bd9', '#f2c94c', '#4fa86a'].map((bg, i) => ({ bg, tf: s.apps ? `translateX(${i * .56}em) translateY(${i === 1 ? -.14 : 0}em) rotate(${(i - 1) * 14}deg)` : `translateX(${i * .22}em) rotate(${i * 5}deg)` })),
+      hand: HAND.map((c, i) => {
+        const vw = typeof innerWidth !== 'undefined' ? innerWidth : 1400, mob = vw < 700, cw = mob ? Math.min(220, vw * .56) : Math.max(120, Math.min(340, (vw - 48) / 5.3)), sp = cw * .95, hh = s.handHover, o = i - 2, isH = hh === i;
+        let x = o * sp, a = o * 5, y = o * o * 6;
+        if (hh >= 0 && !isH) x += (i < hh ? -1 : 1) * 46;
+        if (isH) { y -= 90; a *= .25; }
+        return { ...c, vidOp: c.video && isH ? 1 : 0, playOp: c.video && isH ? 0 : 1, isVideo: !!c.video, notVideo: !c.video, cur: c.video ? 'play intro' : 'open', z: isH ? 20 : (c.video ? 9 : 5 - Math.abs(o)) + i,
+          tf: mob ? 'translateX(0px) translateY(0px) rotate(0deg)' : `translateX(${x}px) translateY(${y}px) rotate(${a}deg)`, left: mob ? (16 + i * (cw + 12)) + 'px' : '50%',
+          enter: e => { this.setState({ handHover: i }); const vd = c.video && e.currentTarget.querySelector('[data-introvid]'); if (vd) { vd.muted = true; vd.play().catch(() => {}); } },
+          leave: e => { this.setState({ handHover: -1 }); const vd = c.video && e.currentTarget.querySelector('[data-introvid]'); if (vd) vd.pause(); },
+          click: c.video ? (e => { e.preventDefault(); const vd = e.currentTarget.querySelector('[data-introvid]'); if (vd) vd.pause(); this.setState({ video: true }); }) : undefined };
+      }),
+      vidOn: !!s.video, openVideo: () => this.setState({ video: true }), closeVideo: () => this.setState({ video: false }),
+      vidOp: s.video ? 1 : 0, vidPe: s.video ? 'auto' : 'none', vidTf: s.video ? 'scale(1) translateY(0px)' : 'scale(.85) translateY(40px)',
+      navItems: [['work', 'Work', 'go'], ['files', 'Files', 'go'], ['play', 'After hours', 'go'], ['hi', 'Say hi', 'hi!']].map(([id, label, cur]) => { const on = s.nav === id; return { href: '#' + id, label, cur, bg: on ? '#e0582c' : (id === 'hi' ? '#f3f0e8' : 'transparent'), fg: on || id === 'hi' ? '#1a1814' : '#f3f0e8' }; }),
+      playIcon: s.playing ? '❚❚' : '▶', playLabel: s.playing ? 'pause' : 'play'
+    };
+  }
+}
+</script>
+</body>
+</html>
