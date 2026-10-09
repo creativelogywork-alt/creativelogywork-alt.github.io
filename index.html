@@ -16,6 +16,9 @@ html,body{margin:0;background:#f3f0e8}
 @media (pointer:fine){*{cursor:none !important}}
 a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
 ::selection{background:#e0582c;color:#f3f0e8}
+html.rv [data-reveal]:not(.rv-in){opacity:0}
+.rv-in{animation:rvIn .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--rvd,0s)}
+@keyframes rvIn{from{opacity:0;translate:0 48px}to{opacity:1;translate:0 0}}
 @media (max-width:699px){[data-pipe]>div{padding-top:32px !important;padding-bottom:92px !important}[data-pipetext]{gap:16px !important}[data-pipetext] p{font-size:28px !important}}
 </style>
 </helmet>
@@ -78,15 +81,15 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
 </section>
 
 <section id="work" style="padding:40px clamp(16px,3vw,40px) 120px">
-  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
+  <div data-reveal style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
     <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">Selected <span style="color:#e0582c">work</span></h2>
     <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">3 case studies · 5 showcases</span>
   </div>
-  <div style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em;padding:0 clamp(4px,1vw,16px) 16px">CASE STUDIES</div>
+  <div data-reveal style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em;padding:0 clamp(4px,1vw,16px) 16px">CASE STUDIES</div>
   <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ true }}">
     <div style="border-top:1.5px solid #1a1814">
       <sc-for list="{{ cases }}" as="p" hint-placeholder-count="3">
-        <div data-wrow data-cursor="read case" onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" style="position:relative;border-bottom:1.5px solid #1a1814;overflow:hidden;height:{{ p.rowH }};transition:height .65s cubic-bezier(.6,0,.2,1)">
+        <div data-wrow data-reveal data-cursor="read case" onClick="{{ p.open }}" onMouseEnter="{{ p.enter }}" style="position:relative;border-bottom:1.5px solid #1a1814;overflow:hidden;height:{{ p.rowH }};transition:height .65s cubic-bezier(.6,0,.2,1)">
           <div style="position:absolute;inset:0;background:{{ p.bg }};transform-origin:50% 100%;transform:{{ p.fillTf }};transition:transform .55s cubic-bezier(.6,0,.2,1)"></div>
           <div data-wrow-in style="position:relative;height:{{ rowHead }};display:grid;grid-template-columns:{{ rowCols }};gap:16px;align-items:center;padding:0 clamp(4px,1vw,16px);box-sizing:border-box;color:{{ p.rowFg }};transition:color .4s">
             <span style="font:500 12px 'Geist',sans-serif;white-space:nowrap;opacity:.7">{{ p.n }}</span>
@@ -106,7 +109,7 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
     </div>
   </sc-if>
   <sc-if value="{{ isFan }}" hint-placeholder-val="{{ false }}">
-    <div data-fan style="position:relative;height:min(40vw,520px);margin-top:24px">
+    <div data-fan data-reveal style="position:relative;height:min(40vw,520px);margin-top:24px">
       <sc-for list="{{ cases }}" as="p" hint-placeholder-count="3">
         <div data-fancard data-cursor="read case" onClick="{{ p.open }}" style="position:absolute;left:50%;top:0;width:min(31vw,410px);margin-left:max(-15.5vw,-205px);height:100%;border-radius:24px;background:{{ p.bg }};color:{{ p.fg }};overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 40px rgba(26,24,20,.18);transition:translate .45s cubic-bezier(.3,1.4,.5,1)" style-hover="translate:0 -20px">
           <div style="flex:1;position:relative;min-height:0;margin:12px 12px 0;border-radius:14px;overflow:hidden"><img src="{{ p.cover }}" alt="{{ p.t }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ p.fit }};background:{{ p.fitBg }}"></div>
@@ -118,13 +121,13 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
       </sc-for>
     </div>
   </sc-if>
-  <div style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;padding:80px clamp(4px,1vw,16px) 16px">
+  <div data-reveal style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;padding:80px clamp(4px,1vw,16px) 16px">
     <span style="font:500 11px 'Geist',sans-serif;color:#6b665c;letter-spacing:.06em">SHOWCASE</span>
     <span style="font:400 12px 'Geist',sans-serif;color:#6b665c">Client work under NDA · previews only</span>
   </div>
   <div style="display:grid;grid-template-columns:{{ shCols }};gap:16px">
     <sc-for list="{{ showcase }}" as="s" hint-placeholder-count="5">
-      <div data-cursor="{{ s.cur }}" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" onClick="{{ s.open }}" style="cursor:{{ s.pointer }};grid-area:{{ s.area }};aspect-ratio:{{ s.ratio }};width:{{ s.w }};justify-self:center;position:relative;border-radius:24px;overflow:hidden;background:{{ s.bg }};color:{{ s.fg }};transition:transform .5s cubic-bezier(.3,1.4,.5,1)" style-hover="transform:scale(1.015)">
+      <div data-reveal data-cursor="{{ s.cur }}" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" onClick="{{ s.open }}" style="cursor:{{ s.pointer }};grid-area:{{ s.area }};aspect-ratio:{{ s.ratio }};width:{{ s.w }};justify-self:center;position:relative;border-radius:24px;overflow:hidden;background:{{ s.bg }};color:{{ s.fg }};transition:transform .5s cubic-bezier(.3,1.4,.5,1)" style-hover="transform:scale(1.015)">
         <sc-if value="{{ s.vid }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;left:12px;right:12px;top:12px;bottom:{{ s.vbB }};aspect-ratio:{{ s.vbAR }};border-radius:14px;overflow:hidden;background:{{ s.bg }};box-shadow:0 0 0 1px {{ s.stripe }}"><video src="{{ s.poster }}" muted="" loop="" playsinline="" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block"></video></div><span style="position:absolute;top:24px;right:24px;display:flex;align-items:center;gap:6px;padding:6px 10px 6px 8px;border-radius:999px;background:{{ s.fg }};color:{{ s.bg }};font:500 11px 'Geist',sans-serif;white-space:nowrap;pointer-events:none;transition:opacity .3s;opacity:{{ s.chipOp }}"><span style="font-size:9px">▶</span>{{ s.chip }}</span></sc-if>
         <sc-if value="{{ s.noVid }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:14px;border-radius:14px;border:1.5px dashed {{ s.stripe }};background:repeating-linear-gradient(135deg,{{ s.stripe }} 0 10px,transparent 10px 20px);display:flex;align-items:flex-start;justify-content:flex-end;padding:14px;box-sizing:border-box"><span style="font:400 11px 'Geist',sans-serif;opacity:.7">animation preview</span></div></sc-if>
         <div style="position:absolute;left:14px;bottom:14px;right:14px;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
@@ -137,13 +140,13 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
 </section>
 
 <section id="files" style="padding:120px clamp(20px,4vw,56px) 160px;max-width:1200px;margin:0 auto;box-sizing:border-box">
-  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:90px">
+  <div data-reveal style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:90px">
     <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">The <span style="color:#e0582c">files</span></h2>
     <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">pull one out ↓</span>
   </div>
   <div style="display:flex;flex-direction:column">
     <sc-for list="{{ files }}" as="f" hint-placeholder-count="5">
-      <div data-cursor="pull out" onClick="{{ f.open }}" onMouseEnter="{{ f.enter }}" onMouseLeave="{{ f.leave }}" style="position:relative;height:200px;margin-top:{{ f.mt }};transition:transform .45s cubic-bezier(.3,1.5,.5,1);transform:{{ f.tf }}">
+      <div data-reveal data-cursor="pull out" onClick="{{ f.open }}" onMouseEnter="{{ f.enter }}" onMouseLeave="{{ f.leave }}" style="position:relative;height:200px;margin-top:{{ f.mt }};transition:transform .45s cubic-bezier(.3,1.5,.5,1);transform:{{ f.tf }}">
         <div style="position:absolute;top:-38px;left:{{ f.tabX }};width:min(240px,40%);height:40px;border-radius:14px 14px 0 0;background:{{ f.bg }};display:flex;align-items:center;padding:0 18px;box-sizing:border-box;font:500 12px 'Geist',sans-serif;gap:10px"><span>{{ f.co }}</span></div>
         <div style="position:absolute;inset:0;border-radius:0 18px 18px 18px;background:{{ f.bg }};box-shadow:0 -1px 0 rgba(26,24,20,.12),0 -12px 30px rgba(26,24,20,.06);display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:flex-start;padding:22px 24px;box-sizing:border-box">
           <span style="font:400 clamp(28px,3.4vw,44px)/1 'Geist',sans-serif">{{ f.role }}</span>
@@ -155,12 +158,12 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
 </section>
 
 <section id="play" style="padding:60px clamp(16px,3vw,40px) 140px">
-  <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
+  <div data-reveal style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding:0 clamp(4px,1vw,16px) 40px">
     <h2 style="margin:0;font:500 clamp(56px,9vw,140px)/.92 'Geist',sans-serif;letter-spacing:-.03em">After <span style="color:#e0582c">hours</span></h2>
     <span style="font:400 12px 'Geist',sans-serif;color:#6b665c;white-space:nowrap">a podcast · two plugins · hover the clips</span>
   </div>
   <div style="display:grid;grid-template-columns:{{ playCols }};grid-auto-rows:{{ playRows }};gap:16px">
-    <a href="https://open.spotify.com/show/2TJ8k95plpDy6XC5DF0NKf" target="_blank" rel="noopener" onMouseEnter="{{ podEnter }}" onMouseLeave="{{ podLeave }}" data-cursor="listen on spotify ↗" data-cursor-bg="#4fa86a" style="grid-area:{{ ah.pod }};position:relative;border-radius:24px;overflow:hidden;background:#1a1814;color:#f3f0e8;display:block">
+    <a href="https://open.spotify.com/show/2TJ8k95plpDy6XC5DF0NKf" target="_blank" rel="noopener" onMouseEnter="{{ podEnter }}" onMouseLeave="{{ podLeave }}" data-reveal data-cursor="listen on spotify ↗" data-cursor-bg="#4fa86a" style="grid-area:{{ ah.pod }};position:relative;border-radius:24px;overflow:hidden;background:#1a1814;color:#f3f0e8;display:block">
       <img src="assets/podcast.jpeg" alt="Recording The Lowkey Loud" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
       <sc-if value="{{ podVid }}" hint-placeholder-val="{{ false }}"><video data-podvid src="{{ podVid }}" muted="" loop="" playsinline="" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s;opacity:{{ podOp }};pointer-events:none"></video></sc-if>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,24,20,.35),transparent 30%,transparent 50%,rgba(26,24,20,.85));pointer-events:none"></div>
@@ -174,11 +177,11 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
         <span style="width:48px;height:48px;flex:none;border-radius:50%;background:#f3f0e8;color:#1a1814;display:flex;align-items:center;justify-content:center;font-size:18px">↗</span>
       </div>
     </a>
-    <a href="https://www.figma.com/community/generative-plugin/1689716568944090780/handoff-annotator" target="_blank" rel="noopener" data-cursor="try in figma ↗" data-cursor-bg="#3a5bd9" style="grid-area:{{ ah.ho }};position:relative;border-radius:24px;overflow:hidden;background:#f1f2f4;display:block">
+    <a href="https://www.figma.com/community/generative-plugin/1689716568944090780/handoff-annotator" target="_blank" rel="noopener" data-reveal data-cursor="try in figma ↗" data-cursor-bg="#3a5bd9" style="grid-area:{{ ah.ho }};position:relative;border-radius:24px;overflow:hidden;background:#f1f2f4;display:block">
       <img src="assets/plugin-handoff.png" alt="Design handoff annotator — Figma plugin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
       <span style="position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 13px 'Geist',sans-serif;pointer-events:none"><img src="assets/plugin-handoff-icon.png" alt="" style="width:30px;height:30px;border-radius:8px">Figma plugin ↗</span>
     </a>
-    <a href="https://www.figma.com/community/generative-plugin/1689717710124930717" target="_blank" rel="noopener" data-cursor="try in figma ↗" data-cursor-bg="#5823e3" style="grid-area:{{ ah.br }};position:relative;border-radius:24px;overflow:hidden;background:#f7f6f2;display:block">
+    <a href="https://www.figma.com/community/generative-plugin/1689717710124930717" target="_blank" rel="noopener" data-reveal data-cursor="try in figma ↗" data-cursor-bg="#5823e3" style="grid-area:{{ ah.br }};position:relative;border-radius:24px;overflow:hidden;background:#f7f6f2;display:block">
       <img src="assets/plugin-brand-wide.png" alt="Brand Guidelines Generator — Figma plugin" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center;transition:transform .7s cubic-bezier(.3,1,.4,1)" style-hover="transform:scale(1.04)">
       <span style="position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:#1a1814;color:#f3f0e8;font:500 13px 'Geist',sans-serif;pointer-events:none"><img src="assets/plugin-brand-icon.png" alt="" style="width:30px;height:30px;border-radius:8px">Figma plugin ↗</span>
     </a>
@@ -186,7 +189,7 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:16px">
     <sc-for list="{{ clips }}" as="v" hint-placeholder-count="3">
-      <div onMouseEnter="{{ v.enter }}" onMouseLeave="{{ v.leave }}" onClick="{{ v.tap }}" data-cursor="{{ v.cur }}" style="aspect-ratio:4/5;position:relative;border-radius:24px;overflow:hidden;background:#1a1814;transition:transform .5s cubic-bezier(.3,1.4,.5,1);transform:{{ v.tf }}">
+      <div data-reveal onMouseEnter="{{ v.enter }}" onMouseLeave="{{ v.leave }}" onClick="{{ v.tap }}" data-cursor="{{ v.cur }}" style="aspect-ratio:4/5;position:relative;border-radius:24px;overflow:hidden;background:#1a1814;transition:transform .5s cubic-bezier(.3,1.4,.5,1);transform:{{ v.tf }}">
         <video src="{{ v.src }}" muted="" loop="" playsinline="" preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;transition:filter .4s;filter:{{ v.filter }}"></video>
         <div style="position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(transparent,rgba(26,24,20,.6));pointer-events:none"></div>
         <div style="position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:12px">
@@ -199,12 +202,12 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
 </section>
 
 <section id="hi" style="padding:80px 0 120px;overflow:hidden">
-  <div style="overflow:hidden;padding:20px 0">
+  <div data-reveal style="overflow:hidden;padding:20px 0">
     <div data-marquee style="display:flex;width:max-content;font:500 clamp(90px,15vw,230px)/1 'Geist',sans-serif;letter-spacing:-.03em;white-space:nowrap">
       <span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#e0582c">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#3a5bd9">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#e0582c">✺</span><span style="padding-right:.3em">Let’s build something</span><span style="padding-right:.3em;color:#3a5bd9">✺</span>
     </div>
   </div>
-  <div style="display:flex;flex-direction:column;align-items:center;gap:36px;margin-top:40px;padding:0 20px">
+  <div data-reveal style="display:flex;flex-direction:column;align-items:center;gap:36px;margin-top:40px;padding:0 20px">
     <a data-magnet data-cursor="write me" href="mailto:creativelogy.work@gmail.com" style="width:clamp(180px,22vw,240px);height:clamp(180px,22vw,240px);border-radius:50%;background:#1a1814;color:#f3f0e8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center"><span style="font:500 34px 'Geist',sans-serif">Get in touch</span><span style="font:400 11px 'Geist',sans-serif;opacity:.7">creativelogy.work@gmail.com</span></a>
     <div style="display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;font:500 13px 'Geist',sans-serif">
       <a href="https://linkedin.com/in/khalifah-imam-ali-2211701ba" data-cursor="↗" style="padding:13px 8px">LinkedIn</a>
@@ -212,7 +215,7 @@ a{color:#1a1814;text-decoration:none}a:hover{color:#e0582c}
       <a href="https://docs.google.com/document/d/1Pbc6Fdn9ON6yKF_6igsMWB-KDONNAiWDdbvrsbmcnkM/edit?usp=sharing" target="_blank" rel="noopener" data-cursor="cv ↗" style="padding:13px 8px">Résumé</a>
     </div>
   </div>
-  <div style="margin:100px clamp(20px,4vw,56px) 0;padding-top:20px;border-top:1px solid rgba(26,24,20,.15);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 11px 'Geist',sans-serif;color:#6b665c"><span>© 2026 Khalifah Imam Ali</span><span>Designed &amp; built by me</span></div>
+  <div data-reveal style="margin:100px clamp(20px,4vw,56px) 0;padding-top:20px;border-top:1px solid rgba(26,24,20,.15);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 11px 'Geist',sans-serif;color:#6b665c"><span>© 2026 Khalifah Imam Ali</span><span>Designed &amp; built by me</span></div>
 </section>
 
 <a href="#top" data-cursor="top" data-prog style="position:fixed;right:16px;bottom:calc(max(16px, env(safe-area-inset-bottom)) + 72px);z-index:40;width:52px;height:52px;border-radius:50%;background:conic-gradient(#1a1814 calc(var(--sp,0) * 1turn),rgba(26,24,20,.12) 0);display:flex;align-items:center;justify-content:center">
@@ -347,7 +350,7 @@ const SHOWCASE = [
   "bg": "#e6dcc6",
   "fg": "#2a2216",
   "stripe": "rgba(42,34,22,.16)",
-  "vid": "assets/sc-sanur.mp4"
+  "vid": "assets/sc-sanur-v2.mp4"
  },
  {
   "t": "CareerAI",
@@ -381,10 +384,12 @@ const STAGES = ['Idea', 'Prototype', 'Experience', 'Frontend', 'Data'];
 class Component extends DCLogic {
   state = { nav: 'top', sc: -1, scHover: -1, hover: -1, file: -1, lastFile: 0, pop: '', lastPop: 'run', playing: false, video: false, handHover: -1, apps: false, qi: 0, reel: 'run', sound: false, clip: '', caseHover: 0, fpage: 0, cs: -1, lastCs: 0 };
   componentDidUpdate() {
+    this.observeReveals();
     document.documentElement.style.overflow = (this.state.file >= 0 || this.state.cs >= 0 || this.state.sc >= 0) ? 'hidden' : '';
   }
   componentDidMount() {
     this.coarse = matchMedia('(pointer:coarse)').matches;
+    this.setupSmoothScroll(); this.setupReveal();
     this.onNavScroll = () => { let a = 'top'; for (const id of ['work', 'files', 'play', 'hi']) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * 0.45) a = id; } if (scrollY > 0 && innerHeight + scrollY >= document.documentElement.scrollHeight - 4) a = 'hi'; if (a !== this.state.nav) this.setState({ nav: a }); };
     addEventListener('scroll', this.onNavScroll, { passive: true }); addEventListener('load', this.onNavScroll); this.onNavScroll(); setTimeout(this.onNavScroll, 300);
     this.m = { x: innerWidth / 2, y: innerHeight / 2 }; this.c = { ...this.m };
@@ -413,7 +418,39 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     cancelAnimationFrame(this.raf); clearInterval(this.qt); clearTimeout(this.rt);
+    removeEventListener('click', this.onAnchor); this.stopGlide(); if (this.rvIO) this.rvIO.disconnect();
     removeEventListener('pointermove', this.onMove); removeEventListener('mouseover', this.onOver); removeEventListener('keydown', this.onKey); removeEventListener('scroll', this.onNavScroll); removeEventListener('load', this.onNavScroll); removeEventListener('resize', this.onResize);
+  }
+  // Eased scroll for in-page #anchors (hero cards, nav, back-to-top). Any wheel/touch/key input cancels it.
+  setupSmoothScroll() {
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    this.stopGlide = () => { cancelAnimationFrame(this.glide); this.glide = 0; ['wheel', 'touchstart', 'keydown'].forEach(ev => removeEventListener(ev, this.stopGlide)); };
+    this.onAnchor = e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+      const id = a.getAttribute('href').slice(1), el = id && document.getElementById(id); if (!el) return;
+      e.preventDefault(); history.pushState(null, '', '#' + id);
+      const from = scrollY, to = Math.min(el.getBoundingClientRect().top + scrollY, document.documentElement.scrollHeight - innerHeight), dist = to - from;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || Math.abs(dist) < 2) { scrollTo(0, to); return; }
+      this.stopGlide(); const dur = Math.min(1500, 500 + Math.sqrt(Math.abs(dist)) * 13), t0 = performance.now();
+      const step = now => { const t = Math.min(1, (now - t0) / dur); scrollTo(0, from + dist * ease(t)); if (t < 1) this.glide = requestAnimationFrame(step); else this.stopGlide(); };
+      this.glide = requestAnimationFrame(step); ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, this.stopGlide, { passive: true }));
+    };
+    addEventListener('click', this.onAnchor);
+  }
+  // Fade + rise [data-reveal] blocks the first time they enter the viewport; blocks entering together are staggered.
+  setupReveal() {
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('rv');
+    this.rvIO = new IntersectionObserver(entries => {
+      entries.filter(en => en.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left)
+        .forEach((en, i) => { en.target.style.setProperty('--rvd', Math.min(i * .08, .4) + 's'); en.target.classList.add('rv-in'); this.rvIO.unobserve(en.target); });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    this.observeReveals();
+  }
+  observeReveals() {
+    if (!this.rvIO) return;
+    document.querySelectorAll('[data-reveal]:not([data-rv-seen])').forEach(el => { el.setAttribute('data-rv-seen', ''); this.rvIO.observe(el); });
   }
   q() {
     const r = this.root = document.querySelector('[data-root="b"]'); if (!r) return;
